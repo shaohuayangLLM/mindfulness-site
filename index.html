@@ -283,13 +283,40 @@
     .rule-desc { font-size: 12px; color: var(--ink-light); line-height: 1.65; }
 
     .attia-box {
-      background: linear-gradient(135deg, rgba(74,111,165,0.08), var(--paper));
-      border-radius: 12px; padding: 20px 22px; border: 1px solid var(--sleep-light);
-      margin-top: 4px;
+      background: var(--sleep);
+      border-radius: 16px; padding: 32px 30px; margin-top: 16px;
+      position: relative; overflow: hidden;
     }
-    .attia-badge { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sleep); margin-bottom: 6px; }
-    .attia-rule { font-family: 'Noto Serif SC', serif; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-    .attia-desc { font-size: 13px; color: var(--ink-light); line-height: 1.75; }
+    .attia-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 90% 10%, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .attia-badge {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 12px;
+    }
+    .attia-rule {
+      font-family: 'Noto Serif SC', serif; font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 20px;
+    }
+    .attia-points {
+      list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;
+    }
+    .attia-points li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65;
+    }
+    .attia-points li::before {
+      content: '✓'; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(255,255,255,0.18); color: #fff; font-size: 11px;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px;
+    }
+    .attia-note {
+      font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px;
+    }
 
     .sleep-source { margin-top: 18px; font-size: 11px; color: var(--ink-faint); text-align: right; letter-spacing: 0.03em; }
 
@@ -717,8 +744,12 @@
     <div class="attia-box">
       <p class="attia-badge">Attia 补充 · 第 13 条</p>
       <p class="attia-rule">不要纠结睡眠</p>
-      <p class="attia-desc">停用睡眠追踪器——监控焦虑本身就是失眠的来源（矛盾性失眠）。<br><br>
-      <strong>终极非药物方案</strong>：Walker 12 条 + Attia「不纠结睡眠」+ 凉爽床垫 / 暖光灯替换 = 目前最完整的非药物睡眠干预方案。</p>
+      <ul class="attia-points">
+        <li>睡不着没关系，躺着休息本身就有价值</li>
+        <li>不需要盯着时钟看自己睡了多久</li>
+        <li>停用睡眠追踪器——对睡眠的监控焦虑，本身就是失眠的来源</li>
+      </ul>
+      <p class="attia-note">矛盾性失眠：越想睡好越睡不着。放下"我必须睡够 8 小时"的执念，反而是改善睡眠的第一步。</p>
     </div>
 
     <p class="sleep-source">来源：《我们为什么要睡觉》Matthew Walker · Why We Sleep</p>
