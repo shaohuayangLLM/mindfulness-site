@@ -23,6 +23,7 @@
       --mind:  #4a7c52;   --mind-dark:  #1e3d24;   --mind-pale:  #e3ede4;   --mind-light:  #b0ccb3;
       --run:   #8a4a2a;   --run-dark:   #3d1c08;   --run-pale:   #f0e4da;   --run-light:   #c4906a;
       --emo:   #6b3fa0;   --emo-dark:   #2e1356;   --emo-pale:   #ece5f5;   --emo-light:   #b08ed4;
+      --habit: #2a7a7a;   --habit-dark: #0d2d2d;   --habit-pale: #e0f0f0;   --habit-light: #7abcbc;
     }
 
     html { scroll-behavior: smooth; }
@@ -112,6 +113,7 @@
     .card:nth-child(3) { transition-delay: 0.3s; }
     .card:nth-child(4) { transition-delay: 0.4s; }
     .card:nth-child(5) { transition-delay: 0.5s; }
+    .card:nth-child(6) { transition-delay: 0.6s; }
 
     .card-bg-emoji {
       position: absolute;
@@ -129,6 +131,7 @@
     .card-mind  { background: var(--mind-dark); }
     .card-run   { background: var(--run-dark); }
     .card-emo   { background: var(--emo-dark); }
+    .card-habit { background: var(--habit-dark); }
 
     .card-wide { grid-column: 1 / -1; min-height: 200px; flex-direction: row; align-items: center; gap: 40px; }
     .card-wide .card-left { flex: 1; }
@@ -291,6 +294,24 @@
         <span class="tag">快走也算</span>
       </div>
       <div class="card-cta">开始有氧计划 <span class="cta-arrow">→</span></div>
+    </a>
+
+    <a class="card card-habit card-wide" href="habits.html">
+      <div class="card-bg-emoji">🔁</div>
+      <div class="card-left">
+        <div class="card-icon">🔁</div>
+        <div class="card-title">习惯养成</div>
+        <p class="card-hook">不靠意志力，不靠激情。把新习惯做到"小到不可能失败"，搭在已有行为上——体系比目标更重要。</p>
+      </div>
+      <div class="card-right">
+        <div class="card-highlight">「你不会升华到目标高度，只会跌落到体系水平。」</div>
+        <div class="card-tags">
+          <span class="tag">微习惯</span>
+          <span class="tag">习惯叠加</span>
+          <span class="tag">1% 法则</span>
+        </div>
+        <div class="card-cta">学习如何坚持 <span class="cta-arrow">→</span></div>
+      </div>
     </a>
 
     <a class="card card-emo card-wide" href="emotion.html">

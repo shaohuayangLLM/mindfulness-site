@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>习惯养成 · 好好生活</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --border: rgba(42,37,32,0.1);
+      --habit: #2a7a7a;
+      --habit-dark: #0d2d2d;
+      --habit-pale: #e0f0f0;
+      --habit-light: #7abcbc;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans SC', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; }
+
+    header {
+      background: var(--habit-dark);
+      padding: 48px 24px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '🔁';
+      position: absolute; right: -10px; bottom: -30px;
+      font-size: 180px; opacity: 0.05; line-height: 1; pointer-events: none;
+    }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 28px; transition: color 0.2s; }
+    .back-link:hover { color: rgba(255,255,255,0.9); }
+    .page-icon { font-size: 42px; margin-bottom: 16px; }
+    h1 { font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 700; color: #fff; letter-spacing: 0.06em; margin-bottom: 14px; }
+    .page-tagline { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 440px; margin: 0 auto; }
+
+    main { flex: 1; max-width: 860px; width: 100%; margin: 0 auto; padding: 52px 24px 72px; display: flex; flex-direction: column; gap: 40px; }
+
+    .section-card {
+      background: #fff; border-radius: 20px; border: 1px solid var(--border); overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    .section-card.visible { opacity: 1; transform: translateY(0); }
+    .section-card:nth-child(1) { transition-delay: 0.05s; }
+    .section-card:nth-child(2) { transition-delay: 0.15s; }
+    .section-card:nth-child(3) { transition-delay: 0.25s; }
+    .section-card:nth-child(4) { transition-delay: 0.35s; }
+
+    .card-header { background: var(--habit-dark); padding: 24px 28px 20px; display: flex; align-items: center; gap: 14px; }
+    .card-header-icon { font-size: 26px; }
+    .card-header-title { font-family: 'Noto Serif SC', serif; font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+    .card-header-sub { font-size: 12.5px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .card-body { padding: 28px; }
+
+    p.body-text { font-size: 14.5px; line-height: 1.85; color: var(--ink-light); margin-bottom: 14px; }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    .insight-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; font-weight: 500; }
+
+    .insight-box { background: var(--habit-dark); color: #fff; border-radius: 12px; padding: 20px 22px; font-size: 14px; line-height: 1.75; margin-bottom: 20px; }
+    .insight-box strong { color: var(--habit-light); }
+
+    .divider { height: 1px; background: var(--border); margin: 22px 0; }
+
+    .quote-block { border-left: 4px solid var(--habit); padding: 16px 20px; margin: 20px 0; background: var(--habit-pale); border-radius: 0 10px 10px 0; }
+    .quote-text { font-size: 15px; line-height: 1.75; color: var(--habit-dark); font-style: italic; margin-bottom: 6px; }
+    .quote-source { font-size: 12px; color: var(--ink-faint); }
+
+    .source-line { font-size: 12px; color: var(--ink-faint); margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); }
+
+    /* ── ONE PERCENT ── */
+    .percent-visual {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin: 20px 0;
+    }
+    .pv-side {
+      text-align: center; padding: 20px 24px;
+      background: var(--habit-pale); border-radius: 12px 0 0 12px;
+      flex: 1;
+    }
+    .pv-side:last-child { border-radius: 0 12px 12px 0; background: var(--habit-dark); }
+    .pv-side:last-child .pv-num { color: var(--habit-light); }
+    .pv-side:last-child .pv-label { color: rgba(255,255,255,0.65); }
+    .pv-num { font-family: 'Noto Serif SC', serif; font-size: 42px; font-weight: 700; color: var(--habit-dark); line-height: 1; margin-bottom: 6px; }
+    .pv-label { font-size: 12.5px; color: var(--ink-light); line-height: 1.5; }
+    .pv-arrow { font-size: 28px; color: var(--habit); padding: 0 8px; }
+
+    /* ── TINY HABITS ── */
+    .tiny-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .tiny-item { background: var(--habit-pale); border-radius: 12px; padding: 16px 16px; }
+    .tiny-icon { font-size: 26px; margin-bottom: 8px; }
+    .tiny-title { font-size: 13.5px; font-weight: 600; color: var(--habit-dark); margin-bottom: 5px; }
+    .tiny-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.65; }
+
+    .warning-pill {
+      display: inline-block; background: #fff3cd; color: #7a5000;
+      font-size: 12px; padding: 5px 14px; border-radius: 20px;
+      border: 1px solid #e6c84a; margin-bottom: 16px;
+    }
+
+    /* ── HABIT STACK ── */
+    .stack-formula {
+      background: var(--habit-dark); border-radius: 14px;
+      padding: 22px 24px; margin-bottom: 20px; color: #fff;
+      font-size: 15px; line-height: 2.2; text-align: center;
+    }
+    .stack-formula .sf-blank {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border-bottom: 2px solid var(--habit-light);
+      padding: 2px 16px; border-radius: 4px; margin: 0 4px;
+      color: var(--habit-light); font-weight: 600;
+    }
+    .stack-formula .sf-arrow { color: rgba(255,255,255,0.5); margin: 0 8px; }
+
+    .stack-examples { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .stack-ex {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 0; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .stack-ex-before {
+      background: var(--habit-pale); padding: 12px 14px;
+      font-size: 12.5px; color: var(--habit-dark); font-weight: 500;
+      border-right: 1px solid rgba(42,122,122,0.2);
+      display: flex; align-items: center; gap: 6px; min-width: 130px;
+    }
+    .stack-ex-after { padding: 12px 14px; font-size: 12.5px; color: var(--ink-light); line-height: 1.6; display: flex; align-items: center; }
+    .stack-ex-icon { font-size: 18px; }
+
+    /* ── APPLY GRID ── */
+    .apply-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .apply-item { border-radius: 12px; padding: 14px 16px; border-left: 4px solid; }
+    .ai-sleep  { background: #e8eef7; border-color: #1e3356; }
+    .ai-med    { background: #f5e6de; border-color: #5c2d18; }
+    .ai-mind   { background: #e3ede4; border-color: #1e3d24; }
+    .ai-run    { background: #f0e4da; border-color: #3d1c08; }
+    .ai-emo    { background: #ece5f5; border-color: #2e1356; }
+    .apply-topic { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 5px; }
+    .apply-formula { font-size: 12.5px; color: var(--ink-light); line-height: 1.7; }
+    .apply-formula strong { color: var(--ink); }
+
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--ink-faint); }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      main { padding: 32px 16px 52px; }
+      h1 { font-size: 28px; }
+      .tiny-grid { grid-template-columns: 1fr; }
+      .apply-grid { grid-template-columns: 1fr; }
+      .card-body { padding: 20px 18px; }
+      .percent-visual { flex-direction: column; gap: 8px; }
+      .pv-side { border-radius: 12px !important; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="index.html">← 返回首页</a>
+  <div class="page-icon">🔁</div>
+  <h1>习惯养成</h1>
+  <p class="page-tagline">不靠意志力，不靠激情——<br>做到"小到不可能失败"，就够了。</p>
+</header>
+
+<main>
+
+  <!-- CARD 1: 为什么总是坚持不下去 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🎯</div>
+      <div>
+        <div class="card-header-title">为什么总是坚持不下去？</div>
+        <div class="card-header-sub">目标 vs 体系——《掌控习惯》核心洞察</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">大多数人失败，不是因为缺乏意志力，而是因为方向搞错了——把精力放在"我要达成什么"，而不是"我每天做什么"。</p>
+
+      <div class="quote-block">
+        <div class="quote-text">「你无法升华到你设定的目标高度，你只会跌落到你体系运作的水平。」</div>
+        <div class="quote-source">— James Clear · 《掌控习惯》</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="insight-label">每天进步 1%，一年后会怎样？</div>
+
+      <div class="percent-visual">
+        <div class="pv-side">
+          <div class="pv-num">1%</div>
+          <div class="pv-label">每天进步<br>一点点</div>
+        </div>
+        <div class="pv-arrow">→</div>
+        <div class="pv-side">
+          <div class="pv-num">37×</div>
+          <div class="pv-label">365天后<br>的你</div>
+        </div>
+      </div>
+
+      <p class="body-text">相反，每天退步 1%，一年后你只剩下 3%。微小的改变在短期内几乎看不出差异，但时间会把它放大成巨大的鸿沟。</p>
+
+      <div class="insight-box">
+        <strong>核心转变：</strong>不要问"我今天有没有完成目标"，而要问<strong style="color:#fff">「我今天有没有执行我的体系？」</strong>——睡眠、冥想、跑步，都是你的体系，而不是目标。
+      </div>
+
+      <p class="source-line">来源：《掌控习惯》James Clear</p>
+    </div>
+  </div>
+
+  <!-- CARD 2: 微习惯——小到不可能失败 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🌱</div>
+      <div>
+        <div class="card-header-title">微习惯——小到不可能失败</div>
+        <div class="card-header-sub">《微习惯》Stephen Guise · 把目标缩小到荒唐的地步</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">动力是靠不住的。它会高涨，也会消退。真正让习惯扎根的，是让它<strong>小到不需要动力就能完成</strong>。</p>
+
+      <div class="warning-pill">⚠️ 廉价的激励坚持不了几天</div>
+
+      <div class="tiny-grid">
+        <div class="tiny-item">
+          <div class="tiny-icon">💪</div>
+          <div class="tiny-title">不是"每天跑步"</div>
+          <div class="tiny-desc">而是"换上运动鞋，站到门口"。完成了，今天就赢了。</div>
+        </div>
+        <div class="tiny-item">
+          <div class="tiny-icon">🧘</div>
+          <div class="tiny-title">不是"冥想20分钟"</div>
+          <div class="tiny-desc">而是"坐下来，深呼吸3次"。哪怕躺在床上也算。</div>
+        </div>
+        <div class="tiny-item">
+          <div class="tiny-icon">📖</div>
+          <div class="tiny-title">不是"每天读书"</div>
+          <div class="tiny-desc">而是"翻开书，读一段话"。5分钟就够，一行也算。</div>
+        </div>
+        <div class="tiny-item">
+          <div class="tiny-icon">😴</div>
+          <div class="tiny-title">不是"11点前入睡"</div>
+          <div class="tiny-desc">而是"10:45关掉屏幕，躺下来"。躺着就是在努力。</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">「你的微目标成了内心永恒的火花，它永不熄灭——这才真正激励人心。」</div>
+        <div class="quote-source">— 《微习惯》Stephen Guise</div>
+      </div>
+
+      <p class="body-text">微习惯的关键不是"做了多少"，而是<strong>从不断链</strong>。哪怕今晚很累，在床上做 1 个深呼吸，今天的冥想习惯就没有断。</p>
+
+      <p class="source-line">来源：《微习惯》Stephen Guise</p>
+    </div>
+  </div>
+
+  <!-- CARD 3: 习惯叠加公式 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🔗</div>
+      <div>
+        <div class="card-header-title">习惯叠加——搭便车</div>
+        <div class="card-header-sub">把新习惯挂在你已有的行为上</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">不要单独"记得去冥想"——而是把新习惯接在你每天<strong>必然会做</strong>的事后面。不需要记，不需要意志力，只需要触发。</p>
+
+      <div class="insight-label">习惯叠加公式</div>
+
+      <div class="stack-formula">
+        完成<span class="sf-blank">已有习惯</span>之后<span class="sf-arrow">→</span>立刻执行<span class="sf-blank">新习惯</span>
+      </div>
+
+      <div class="insight-label">具体例子</div>
+
+      <div class="stack-examples">
+        <div class="stack-ex">
+          <div class="stack-ex-before"><span class="stack-ex-icon">🪥</span> 刷完牙</div>
+          <div class="stack-ex-after">→ 坐床边做 3 分钟呼吸冥想</div>
+        </div>
+        <div class="stack-ex">
+          <div class="stack-ex-before"><span class="stack-ex-icon">☕</span> 冲好咖啡</div>
+          <div class="stack-ex-after">→ 翻开书，读一段话</div>
+        </div>
+        <div class="stack-ex">
+          <div class="stack-ex-before"><span class="stack-ex-icon">🍚</span> 吃饭前3口</div>
+          <div class="stack-ex-after">→ 放下手机，正念感受食物味道</div>
+        </div>
+        <div class="stack-ex">
+          <div class="stack-ex-before"><span class="stack-ex-icon">🛋️</span> 坐上沙发</div>
+          <div class="stack-ex-after">→ 先拉伸 5 分钟，再看视频</div>
+        </div>
+        <div class="stack-ex">
+          <div class="stack-ex-before"><span class="stack-ex-icon">🌙</span> 关灯躺下</div>
+          <div class="stack-ex-after">→ 默念今天一件开心的事，不看手机</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>三个匹配原则：</strong><br>
+        · 频率要匹配——每天的新习惯要绑在每天必做的事上<br>
+        · 时间要顺流——不要在混乱时段塞进需要专注的习惯<br>
+        · 指令要精确——"吃完午饭后"比"午休时"更容易执行
+      </div>
+
+      <p class="source-line">来源：《掌控习惯》James Clear · 习惯叠加（Habit Stacking）</p>
+    </div>
+  </div>
+
+  <!-- CARD 4: 应用到本站五个主题 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">📋</div>
+      <div>
+        <div class="card-header-title">从今天开始——五个主题的微习惯</div>
+        <div class="card-header-sub">每一条都小到不可能拒绝</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">以下是针对本站五个主题，最小可执行版本的习惯叠加方案。从其中<strong>选一条</strong>开始，坚持两周，再加第二条。</p>
+
+      <div class="apply-grid">
+        <div class="apply-item ai-sleep">
+          <div class="apply-topic">🌙 睡眠</div>
+          <div class="apply-formula">关灯后 → <strong>不碰手机，闭眼躺着</strong>，哪怕睡不着。躺着就是在修复。</div>
+        </div>
+        <div class="apply-item ai-med">
+          <div class="apply-topic">🧘 冥想</div>
+          <div class="apply-formula">刷完牙后 → <strong>坐床边，深呼吸 3 次</strong>。不需要计时，不需要"做好"。</div>
+        </div>
+        <div class="apply-item ai-mind">
+          <div class="apply-topic">🌿 正念</div>
+          <div class="apply-formula">吃饭前 3 口 → <strong>放下手机</strong>，专注感受食物的温度和味道。</div>
+        </div>
+        <div class="apply-item ai-run">
+          <div class="apply-topic">🏃 跑步&快走</div>
+          <div class="apply-formula">换上运动鞋后 → <strong>出门走 10 分钟</strong>。走就是成功，不规定距离。</div>
+        </div>
+        <div class="apply-item ai-emo">
+          <div class="apply-topic">🌊 情绪</div>
+          <div class="apply-formula">睡前躺下后 → <strong>问自己"今天情绪如何"</strong>，说出一个词，不分析，只记录。</div>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top:20px;">
+        <div class="quote-text">「习惯不会限制自由，它们会创造自由。只有当生活的基本要素变得像呼吸一样自动化，你的大脑才有空间去做真正重要的事。」</div>
+        <div class="quote-source">— 《掌控习惯》James Clear</div>
+      </div>
+
+      <p class="source-line">来源：《掌控习惯》James Clear · 《微习惯》Stephen Guise</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  mindfulness.ainside.cn &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.section-card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06 });
+  cards.forEach(c => obs.observe(c));
+</script>
+</body>
+</html>

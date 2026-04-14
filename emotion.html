@@ -114,6 +114,7 @@
     .section-card:nth-child(1) { transition-delay: 0.05s; }
     .section-card:nth-child(2) { transition-delay: 0.15s; }
     .section-card:nth-child(3) { transition-delay: 0.25s; }
+    .section-card:nth-child(4) { transition-delay: 0.35s; }
 
     .card-header {
       background: var(--emo-dark);
@@ -413,6 +414,49 @@
       border-top: 1px dashed var(--border);
     }
 
+    /* ── VOLCANO ── */
+    .v-eruption { text-align: center; margin-bottom: 10px; }
+    .v-eruption-emoji { font-size: 52px; display: inline-block; animation: vErupt 1.8s ease-in-out infinite alternate; }
+    @keyframes vErupt { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-10px) rotate(3deg); } }
+    .v-eruption-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: #7a1010; margin-top: 2px; text-transform: uppercase; }
+
+    .v-stack { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 22px; width: 100%; }
+
+    .vbar {
+      border-radius: 7px; height: 48px;
+      display: flex; align-items: center;
+      padding: 0 14px; color: rgba(255,255,255,0.95);
+      font-weight: 600; transition: filter 0.2s; cursor: default;
+    }
+    .vbar:hover { filter: brightness(1.12); }
+    .vbar-num { font-size: 19px; font-weight: 800; margin-right: 8px; flex-shrink: 0; }
+    .vbar-name { font-size: 12.5px; flex-shrink: 0; }
+    .vbar-badge {
+      margin-left: auto; padding-left: 10px;
+      font-size: 10.5px; background: rgba(255,255,255,0.22);
+      padding: 3px 9px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.42);
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .vb5 { width: 28%; background: linear-gradient(90deg,#780a0a,#961414); }
+    .vb4 { width: 45%; background: linear-gradient(90deg,#b03416,#cc4220); }
+    .vb3 { width: 62%; background: linear-gradient(90deg,#b06810,#d08020); box-shadow: 0 0 0 2px rgba(255,200,70,0.55); }
+    .vb2 { width: 80%; background: linear-gradient(90deg,#707010,#929218); }
+    .vb1 { width: 97%; background: linear-gradient(90deg,#2a6638,#38884a); }
+
+    .volcano-descs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .vdesc { border-radius: 10px; padding: 12px 14px; border-left: 3px solid; }
+    .vd1 { background: #edf6ee; border-color: #2a6638; }
+    .vd2 { background: #f9f9e0; border-color: #707010; }
+    .vd3 { background: #fef8ec; border-color: #b06810; grid-column: 1 / -1; }
+    .vd4 { background: #fdf3ef; border-color: #b03416; }
+    .vd5 { background: #fdf0f0; border-color: #780a0a; }
+    .vdesc-lv { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .vdesc-title { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .vdesc-body { font-size: 12.5px; color: var(--ink-light); line-height: 1.65; }
+    .vdesc-badge { display: inline-block; background: #fff3cd; color: #7a5000; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; border: 1px solid #e6c84a; margin-left: 5px; }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -505,6 +549,64 @@
       </div>
 
       <p class="source-line">来源：《掌控习惯》· James Clear · 认知觉醒 · 周岭</p>
+    </div>
+  </div>
+
+  <!-- CARD 1.5: 情绪火山 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🌋</div>
+      <div>
+        <div class="card-header-title">情绪火山</div>
+        <div class="card-header-sub">情绪不会突然爆发——认识它的 5 个阶段</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">就像火山喷发前，热量在地下不断积聚——情绪爆发也有迹可循。能识别出自己处于哪个阶段，才能在关键节点踩下刹车。</p>
+
+      <div class="v-eruption">
+        <div class="v-eruption-emoji">💥</div>
+        <div class="v-eruption-label">情绪火山爆发</div>
+      </div>
+
+      <div class="v-stack">
+        <div class="vbar vb5"><span class="vbar-num">5</span><span class="vbar-name">爆发失控</span></div>
+        <div class="vbar vb4"><span class="vbar-num">4</span><span class="vbar-name">快要失控</span></div>
+        <div class="vbar vb3"><span class="vbar-num">3</span><span class="vbar-name">明显烦躁</span><span class="vbar-badge">★ 干预关键点</span></div>
+        <div class="vbar vb2"><span class="vbar-num">2</span><span class="vbar-name">轻微不适</span></div>
+        <div class="vbar vb1"><span class="vbar-num">1</span><span class="vbar-name">平静放松</span></div>
+      </div>
+
+      <div class="volcano-descs">
+        <div class="vdesc vd1">
+          <div class="vdesc-lv" style="color:#2a6638">LV.1 · 平静放松</div>
+          <div class="vdesc-title">状态良好</div>
+          <div class="vdesc-body">思路清晰，身体放松，适合学习、工作和社交。</div>
+        </div>
+        <div class="vdesc vd2">
+          <div class="vdesc-lv" style="color:#6a6810">LV.2 · 轻微不适</div>
+          <div class="vdesc-title">情绪酝酿中</div>
+          <div class="vdesc-body">有些烦躁或紧张，能感受到，但仍在控制范围内。</div>
+        </div>
+        <div class="vdesc vd3">
+          <div class="vdesc-lv" style="color:#a05c08">LV.3 · 明显烦躁 <span class="vdesc-badge">★ 最佳干预时机</span></div>
+          <div class="vdesc-title">在这里停下来</div>
+          <div class="vdesc-body">情绪明显升温。<strong>深呼吸 3 次，说出你的情绪名称，不要做重要决定</strong>。过了这个点，就难了。</div>
+        </div>
+        <div class="vdesc vd4">
+          <div class="vdesc-lv" style="color:#a02a10">LV.4 · 快要失控</div>
+          <div class="vdesc-title">理智开始断线</div>
+          <div class="vdesc-body">很难做理性判断。尽量离开触发场景，暂停对话。</div>
+        </div>
+        <div class="vdesc vd5">
+          <div class="vdesc-lv" style="color:#700808">LV.5 · 情绪爆发</div>
+          <div class="vdesc-title">完全失控</div>
+          <div class="vdesc-body">被情绪彻底控制，之后往往有强烈的后悔感。</div>
+        </div>
+      </div>
+
+      <p class="source-line">来源：《情绪火山》练习 95 · Maguire 2016</p>
     </div>
   </div>
 
