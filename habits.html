@@ -55,6 +55,7 @@
     .section-card:nth-child(2) { transition-delay: 0.15s; }
     .section-card:nth-child(3) { transition-delay: 0.25s; }
     .section-card:nth-child(4) { transition-delay: 0.35s; }
+    .section-card:nth-child(5) { transition-delay: 0.45s; }
 
     .card-header { background: var(--habit-dark); padding: 24px 28px 20px; display: flex; align-items: center; gap: 14px; }
     .card-header-icon { font-size: 26px; }
@@ -149,6 +150,45 @@
     .apply-formula { font-size: 12.5px; color: var(--ink-light); line-height: 1.7; }
     .apply-formula strong { color: var(--ink); }
 
+    /* ── FOGG MODEL ── */
+    .fogg-formula {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin: 20px 0; flex-wrap: wrap;
+    }
+    .fogg-b {
+      background: var(--habit-dark); color: #fff;
+      border-radius: 12px 0 0 12px; padding: 18px 20px; text-align: center; min-width: 80px;
+    }
+    .fogg-eq { font-size: 28px; color: var(--ink-faint); padding: 0 10px; align-self: center; }
+    .fogg-map {
+      display: flex; border: 2px solid var(--habit-dark); border-radius: 0 12px 12px 0; overflow: hidden;
+    }
+    .fogg-elem {
+      padding: 16px 18px; text-align: center; min-width: 76px;
+      border-right: 1px solid rgba(42,122,122,0.2);
+    }
+    .fogg-elem:last-child { border-right: none; }
+    .fogg-elem-letter { font-family: 'Noto Serif SC', serif; font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .fogg-elem-name { font-size: 11px; color: var(--ink-faint); }
+    .fm { background: #fef8ec; } .fm .fogg-elem-letter { color: #b06810; }
+    .fa { background: var(--habit-pale); } .fa .fogg-elem-letter { color: var(--habit); }
+    .fp { background: #edf6ee; } .fp .fogg-elem-letter { color: #2a6638; }
+    .fogg-b-letter { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .fogg-b-name { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+    .fogg-levers { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .fogg-lever { border-radius: 12px; padding: 16px 14px; }
+    .fl-m { background: #fef8ec; border-top: 3px solid #b06810; }
+    .fl-a { background: var(--habit-pale); border-top: 3px solid var(--habit); }
+    .fl-p { background: #edf6ee; border-top: 3px solid #2a6638; }
+    .fl-icon { font-size: 24px; margin-bottom: 8px; }
+    .fl-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .fl-desc { font-size: 12px; color: var(--ink-light); line-height: 1.65; }
+    .fl-key { font-size: 11px; margin-top: 8px; font-weight: 600; }
+    .fl-m .fl-key { color: #b06810; }
+    .fl-a .fl-key { color: var(--habit); }
+    .fl-p .fl-key { color: #2a6638; }
+
     footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--ink-faint); }
     footer a { color: var(--ink-light); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
@@ -216,6 +256,75 @@
       </div>
 
       <p class="source-line">来源：《掌控习惯》James Clear</p>
+    </div>
+  </div>
+
+  <!-- CARD 1.5: 福格行为模型 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">⚙️</div>
+      <div>
+        <div class="card-header-title">福格行为模型 B = M · A · P</div>
+        <div class="card-header-sub">BJ Fogg · 行为发生的三个条件</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">为什么"知道该做"却还是不做？因为<strong>信息本身无法改变行为</strong>。行为要发生，需要三个条件同时满足。</p>
+
+      <div class="fogg-formula">
+        <div class="fogg-b">
+          <div class="fogg-b-letter">B</div>
+          <div class="fogg-b-name">行为</div>
+        </div>
+        <div class="fogg-eq">=</div>
+        <div class="fogg-map">
+          <div class="fogg-elem fm">
+            <div class="fogg-elem-letter">M</div>
+            <div class="fogg-elem-name">动机</div>
+          </div>
+          <div class="fogg-elem fa">
+            <div class="fogg-elem-letter">A</div>
+            <div class="fogg-elem-name">能力</div>
+          </div>
+          <div class="fogg-elem fp">
+            <div class="fogg-elem-letter">P</div>
+            <div class="fogg-elem-name">提示</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fogg-levers">
+        <div class="fogg-lever fl-m">
+          <div class="fl-icon">🔥</div>
+          <div class="fl-title">M · 动机</div>
+          <div class="fl-desc">想做这件事的欲望。会高涨，也会消退——最不可靠的一个。</div>
+          <div class="fl-key">⚠️ 不要依赖它</div>
+        </div>
+        <div class="fogg-lever fl-a">
+          <div class="fl-icon">✂️</div>
+          <div class="fl-title">A · 能力</div>
+          <div class="fl-desc">行为有多容易做到。越简单，越不依赖动机就能完成。</div>
+          <div class="fl-key">★ 重点优化这里</div>
+        </div>
+        <div class="fogg-lever fl-p">
+          <div class="fl-icon">🔔</div>
+          <div class="fl-title">P · 提示</div>
+          <div class="fl-desc">触发行为的信号——时间、地点、另一个行为、感受。</div>
+          <div class="fl-key">→ 习惯叠加来设计</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">「仅有信息是无法保证改变行为的。我知道早睡有利于健康，但这并不等于我就会早睡——从"认知"到"行为真正发生"，中间有一道鸿沟。」</div>
+        <div class="quote-source">— BJ Fogg · 《福格行为模型》· 信息-行动谬误</div>
+      </div>
+
+      <div class="insight-box">
+        <strong>核心结论：</strong>动机靠不住。与其靠激情冲劲，不如把行为做到<strong style="color:#fff">极度简单（提升能力）</strong>，再搭配一个<strong style="color:#fff">可靠的提示</strong>。哪怕动机为零，也能完成。
+      </div>
+
+      <p class="source-line">来源：《福格行为模型》BJ Fogg · Tiny Habits</p>
     </div>
   </div>
 
