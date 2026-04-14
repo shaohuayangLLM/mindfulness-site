@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>情绪 · 好好生活</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --border: rgba(42,37,32,0.1);
+      --emo: #6b3fa0;
+      --emo-dark: #2e1356;
+      --emo-mid: #4a2280;
+      --emo-pale: #ece5f5;
+      --emo-light: #b08ed4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--emo-dark);
+      padding: 48px 24px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '🌊';
+      position: absolute;
+      right: -20px;
+      bottom: -30px;
+      font-size: 180px;
+      opacity: 0.05;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.9); }
+
+    .page-icon { font-size: 42px; margin-bottom: 16px; }
+
+    h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .page-tagline {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 52px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* ── SECTION CARD ── */
+    .section-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.2,0.64,1);
+    }
+
+    .section-card.visible { opacity: 1; transform: translateY(0); }
+    .section-card:nth-child(1) { transition-delay: 0.05s; }
+    .section-card:nth-child(2) { transition-delay: 0.15s; }
+    .section-card:nth-child(3) { transition-delay: 0.25s; }
+
+    .card-header {
+      background: var(--emo-dark);
+      padding: 24px 28px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-header-icon { font-size: 26px; }
+
+    .card-header-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    .card-header-sub {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+
+    .card-body { padding: 28px; }
+
+    /* ── BRAIN MODEL ── */
+    .brains-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .brain-item {
+      background: var(--emo-pale);
+      border-radius: 12px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .brain-icon { font-size: 28px; margin-bottom: 8px; }
+
+    .brain-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--emo-dark);
+      margin-bottom: 4px;
+    }
+
+    .brain-desc {
+      font-size: 12px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .insight-box {
+      background: var(--emo-dark);
+      color: #fff;
+      border-radius: 12px;
+      padding: 20px 22px;
+      font-size: 14px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .insight-box strong { color: var(--emo-light); }
+
+    .insight-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    p.body-text {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--ink-light);
+      margin-bottom: 14px;
+    }
+
+    p.body-text:last-child { margin-bottom: 0; }
+
+    /* ── EMOTION SIGNAL ── */
+    .signals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .signal-item {
+      border-radius: 10px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--emo);
+      background: var(--emo-pale);
+    }
+
+    .signal-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--emo-dark);
+      margin-bottom: 4px;
+    }
+
+    .signal-msg {
+      font-size: 12.5px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    /* ── STOP STEPS ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--emo-dark);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content { flex: 1; padding-top: 5px; }
+
+    .step-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    /* ── COMPARISON ── */
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .compare-col {
+      border-radius: 12px;
+      padding: 18px 16px;
+    }
+
+    .compare-col.bad  { background: #f5e8e8; border: 1px solid rgba(180,60,60,0.15); }
+    .compare-col.good { background: var(--emo-pale); border: 1px solid rgba(107,63,160,0.15); }
+
+    .compare-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .compare-col.bad  .compare-label { color: #9b3535; }
+    .compare-col.good .compare-label { color: var(--emo); }
+
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+    }
+    .compare-item:last-child { margin-bottom: 0; }
+    .compare-item .dot { font-size: 16px; flex-shrink: 0; margin-top: -1px; }
+
+    /* ── ACT WAVE ── */
+    .act-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .act-step {
+      background: var(--emo-pale);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .act-step-icon { font-size: 28px; margin-bottom: 10px; }
+
+    .act-step-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--emo-dark);
+      margin-bottom: 6px;
+    }
+
+    .act-step-desc {
+      font-size: 12px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    /* ── BLOCKQUOTE ── */
+    .quote-block {
+      border-left: 4px solid var(--emo);
+      padding: 16px 20px;
+      margin: 20px 0;
+      background: var(--emo-pale);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .quote-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--emo-dark);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .quote-source {
+      font-size: 12px;
+      color: var(--ink-faint);
+    }
+
+    /* ── DAILY PRACTICE ── */
+    .practice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .practice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--emo-pale);
+      border-radius: 10px;
+    }
+
+    .practice-icon { font-size: 22px; flex-shrink: 0; }
+
+    .practice-content { flex: 1; }
+
+    .practice-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .practice-desc {
+      font-size: 12.5px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 22px 0;
+    }
+
+    /* ── SOURCE ── */
+    .source-line {
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      main { padding: 32px 16px 52px; }
+      h1 { font-size: 28px; }
+      .brains-row { grid-template-columns: 1fr; }
+      .signals-grid { grid-template-columns: 1fr; }
+      .compare-row { grid-template-columns: 1fr; }
+      .act-steps { grid-template-columns: 1fr; }
+      .card-body { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="index.html">← 返回首页</a>
+  <div class="page-icon">🌊</div>
+  <h1>情绪</h1>
+  <p class="page-tagline">情绪不是敌人，是信号。压抑不会让它消失——<br>允许它存在，它反而更快退潮。</p>
+</header>
+
+<main>
+
+  <!-- CARD 1: 情绪是什么 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🧠</div>
+      <div>
+        <div class="card-header-title">情绪是什么</div>
+        <div class="card-header-sub">理解三脑 · 情绪的本质</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">情绪不是软弱，是大脑进化出来的生存系统。理解它，才能和它合作——而不是对抗。</p>
+
+      <div class="insight-label">我们体内住着三个"自己"</div>
+      <div class="brains-row">
+        <div class="brain-item">
+          <div class="brain-icon">🦎</div>
+          <div class="brain-name">本能脑</div>
+          <div class="brain-desc">追求安全、舒适、即时满足。主导冲动反应。</div>
+        </div>
+        <div class="brain-item">
+          <div class="brain-icon">❤️</div>
+          <div class="brain-name">情绪脑</div>
+          <div class="brain-desc">追求愉悦、避免痛苦。主导感受和情绪体验。</div>
+        </div>
+        <div class="brain-item">
+          <div class="brain-icon">💡</div>
+          <div class="brain-name">理智脑</div>
+          <div class="brain-desc">追求目标、理性决策、规划未来。但力量最弱。</div>
+        </div>
+      </div>
+
+      <p class="body-text">所谓"情绪失控"，其实是<strong>理智脑暂时输给了本能脑和情绪脑</strong>。不是你的错，是脑结构的自然结果。</p>
+
+      <div class="insight-label">情绪是信号，不是事实</div>
+      <div class="signals-grid">
+        <div class="signal-item">
+          <div class="signal-name">焦虑</div>
+          <div class="signal-msg">信号：有什么事我还没准备好。不是"一定会出问题"。</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-name">愤怒</div>
+          <div class="signal-msg">信号：某个边界被触碰，或期待落空了。</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-name">悲伤</div>
+          <div class="signal-msg">信号：失去了重要的东西，需要时间哀悼。</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-name">内疚</div>
+          <div class="signal-msg">信号：做了和自己价值观不一致的事，想修复。</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>核心洞察：</strong>情绪驱动行为。在某种程度上，每个决定都是情绪性的决定。大脑情绪中心受损的人可以列出很多理由，但始终不会真正行动——因为缺乏情感驱动。先有感觉，才有行动。
+      </div>
+
+      <p class="source-line">来源：《掌控习惯》· James Clear · 认知觉醒 · 周岭</p>
+    </div>
+  </div>
+
+  <!-- CARD 2: 情绪来了怎么办 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🆘</div>
+      <div>
+        <div class="card-header-title">情绪来了怎么办</div>
+        <div class="card-header-sub">情绪急救 · 三步应对法</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">情绪汹涌时，<strong>先不要做决定</strong>。你唯一需要做的，是在刺激和反应之间，留出一点点空间。</p>
+
+      <div class="divider"></div>
+
+      <div class="insight-label">压抑为什么没用？</div>
+
+      <div class="compare-row">
+        <div class="compare-col bad">
+          <div class="compare-label">❌ 压抑</div>
+          <div class="compare-item"><span class="dot">·</span>越努力不去想，越挥之不去</div>
+          <div class="compare-item"><span class="dot">·</span>大脑误判"反复出现 = 一定是真的"</div>
+          <div class="compare-item"><span class="dot">·</span>情绪被反弹回来，反而更强烈</div>
+          <div class="compare-item"><span class="dot">·</span>长期压抑导致爆发或身体症状</div>
+        </div>
+        <div class="compare-col good">
+          <div class="compare-label">✓ 接纳</div>
+          <div class="compare-item"><span class="dot">·</span>允许情绪存在，不评判，只观察</div>
+          <div class="compare-item"><span class="dot">·</span>情绪失去"被压抑"的张力，更快消散</div>
+          <div class="compare-item"><span class="dot">·</span>接纳感受 ≠ 认同感受代表的事实</div>
+          <div class="compare-item"><span class="dot">·</span>为理智行动留出空间</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">「当人们被允许直接去想被压抑的念头时，这个念头反而更快消散。允许它存在，比压抑它更有效。」</div>
+        <div class="quote-source">— 《自控力》韦格纳"讽刺性反弹"研究</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="insight-label">三步情绪急救</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">停下来，命名这个情绪</div>
+            <div class="step-desc">说出或在心里说"我现在感到______"。命名情绪会激活前额叶，让情绪脑降温。不需要解释原因，只是命名。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">感受身体，做 3 次深呼吸</div>
+            <div class="step-desc">把注意力放到身体——胸口紧吗？肩膀绷着吗？吸气 4 秒，呼气 6 秒，重复 3 次。这是给神经系统的"刹车信号"。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">问自己：这个情绪在提示什么？</div>
+            <div class="step-desc">情绪是信号，不是命令。焦虑不代表事情一定会变糟，只是提示你有什么还没准备好。听完信号，再决定怎么做。</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="source-line">来源：《超越百岁》Peter Attia · DBT 辩证行为疗法 · 正念认知疗法</p>
+    </div>
+  </div>
+
+  <!-- CARD 3: 长期调节 -->
+  <div class="section-card">
+    <div class="card-header">
+      <div class="card-header-icon">🌱</div>
+      <div>
+        <div class="card-header-title">长期情绪稳定</div>
+        <div class="card-header-sub">成为情绪的观察者，而非受害者</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <p class="body-text">情绪稳定不是"没有情绪"，而是：情绪来了，你能看见它；情绪走了，你能放手。这需要练习。</p>
+
+      <div class="divider"></div>
+
+      <div class="insight-label">核心能力：观察者视角</div>
+
+      <div class="act-steps">
+        <div class="act-step">
+          <div class="act-step-icon">👁️</div>
+          <div class="act-step-name">观察</div>
+          <div class="act-step-desc">注意到情绪正在升起，不立刻被卷入。"我注意到我现在有愤怒。"</div>
+        </div>
+        <div class="act-step">
+          <div class="act-step-icon">🤝</div>
+          <div class="act-step-name">接纳</div>
+          <div class="act-step-desc">允许情绪存在，不评判好坏。情绪是经过的波浪，不是你自己。</div>
+        </div>
+        <div class="act-step">
+          <div class="act-step-icon">🎯</div>
+          <div class="act-step-name">行动</div>
+          <div class="act-step-desc">基于价值观和目标行动，而不是情绪的驱使。"允许想，不代表要做。"</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">「在刺激和反应之间，有一段空间；在那段空间里，有我们选择反应的自由；在我们的反应里，有我们的成长和幸福。」</div>
+        <div class="quote-source">— 维克多·弗兰克尔</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="insight-label">日常练习：顺境中建立能量场</div>
+
+      <div class="practice-list">
+        <div class="practice-item">
+          <div class="practice-icon">🌅</div>
+          <div class="practice-content">
+            <div class="practice-title">早晨 2 分钟情绪签到</div>
+            <div class="practice-desc">睁眼后，在心里问自己"现在感觉怎么样？"，说出一个词。不需要分析，只是注意。</div>
+          </div>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">🔔</div>
+          <div class="practice-content">
+            <div class="practice-title">情绪触发时的暂停仪式</div>
+            <div class="practice-desc">设定一个暗号动作（比如双手放膝盖、或深吸一口气），提醒自己："我正在被触发，先暂停。"</div>
+          </div>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">📝</div>
+          <div class="practice-content">
+            <div class="practice-title">睡前情绪日记（3 分钟）</div>
+            <div class="practice-desc">写下今天最强烈的一个情绪，它在提示什么？自己是怎么应对的？无需评判，只是如实记录。</div>
+          </div>
+        </div>
+        <div class="practice-item">
+          <div class="practice-icon">🧘</div>
+          <div class="practice-content">
+            <div class="practice-title">冥想：观察念头如浮云</div>
+            <div class="practice-desc">坐下，闭眼，把念头和情绪想象成天空中经过的云。你是天空，不是云。看它来，看它走。5 分钟足够。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top: 22px;">
+        <strong>记住：</strong>大多数情绪高峰只持续 <strong style="color:#fff;">90 秒</strong>。如果你能撑过这 90 秒，不做任何冲动反应，情绪的生理反应就会开始消退。剩下的，都是你在用想法喂养它。
+      </div>
+
+      <p class="source-line">来源：《当下的力量》Eckhart Tolle · 《自控力》Kelly McGonigal · ACT 接纳承诺疗法</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  mindfulness.ainside.cn &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.section-card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06 });
+  cards.forEach(c => obs.observe(c));
+</script>
+</body>
+</html>

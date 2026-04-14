@@ -22,6 +22,7 @@
       --med:   #b8613d;   --med-dark:   #5c2d18;   --med-pale:   #f5e6de;   --med-light:   #e8b49a;
       --mind:  #4a7c52;   --mind-dark:  #1e3d24;   --mind-pale:  #e3ede4;   --mind-light:  #b0ccb3;
       --run:   #8a4a2a;   --run-dark:   #3d1c08;   --run-pale:   #f0e4da;   --run-light:   #c4906a;
+      --emo:   #6b3fa0;   --emo-dark:   #2e1356;   --emo-pale:   #ece5f5;   --emo-light:   #b08ed4;
     }
 
     html { scroll-behavior: smooth; }
@@ -110,6 +111,7 @@
     .card:nth-child(2) { transition-delay: 0.2s; }
     .card:nth-child(3) { transition-delay: 0.3s; }
     .card:nth-child(4) { transition-delay: 0.4s; }
+    .card:nth-child(5) { transition-delay: 0.5s; }
 
     .card-bg-emoji {
       position: absolute;
@@ -126,6 +128,12 @@
     .card-med   { background: var(--med-dark); }
     .card-mind  { background: var(--mind-dark); }
     .card-run   { background: var(--run-dark); }
+    .card-emo   { background: var(--emo-dark); }
+
+    .card-wide { grid-column: 1 / -1; min-height: 200px; flex-direction: row; align-items: center; gap: 40px; }
+    .card-wide .card-left { flex: 1; }
+    .card-wide .card-right { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .card-wide .card-bg-emoji { font-size: 160px; right: 20px; bottom: -30px; }
 
     .card-icon { font-size: 28px; margin-bottom: 16px; }
 
@@ -212,6 +220,8 @@
       main { padding: 32px 20px 52px; }
       .card { min-height: 290px; }
       .site-name { font-size: 28px; }
+      .card-wide { flex-direction: column; min-height: 290px; gap: 0; }
+      .card-wide .card-right { flex: none; }
     }
   </style>
 </head>
@@ -281,6 +291,24 @@
         <span class="tag">心率区间</span>
       </div>
       <div class="card-cta">开始跑步计划 <span class="cta-arrow">→</span></div>
+    </a>
+
+    <a class="card card-emo card-wide" href="emotion.html">
+      <div class="card-bg-emoji">🌊</div>
+      <div class="card-left">
+        <div class="card-icon">🌊</div>
+        <div class="card-title">情绪</div>
+        <p class="card-hook">情绪不是敌人，是信号。压抑从不奏效——允许它存在，它反而更快消散。在刺激和反应之间，留出一点空间。</p>
+      </div>
+      <div class="card-right">
+        <div class="card-highlight">「你不是念头，你只是念头的观察者。」</div>
+        <div class="card-tags">
+          <span class="tag">接纳而非压抑</span>
+          <span class="tag">情绪急救</span>
+          <span class="tag">三脑理论</span>
+        </div>
+        <div class="card-cta">了解情绪调节 <span class="cta-arrow">→</span></div>
+      </div>
     </a>
 
   </div>
