@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>睡眠 · 好好生活</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --border: rgba(42,37,32,0.1);
+      --accent: #3d5a8a;
+      --accent-dark: #1e3356;
+      --accent-pale: #e8eef7;
+      --accent-light: #8aabd4;
+      --nav-h: 60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(250,247,242,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 100;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.7; }
+
+    .nav-logo {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--accent-dark);
+      padding: calc(var(--nav-h) + 56px) 24px 56px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
+
+    /* ── Core principle box ── */
+    .principle-box {
+      background: var(--accent-dark);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      color: #fff;
+    }
+
+    .principle-box .pb-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .principle-box p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* ── Section heading ── */
+    .section-heading {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+    }
+
+    /* ── Rule Grid ── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+
+    .rule-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 20px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.22s;
+    }
+
+    .rule-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rule-card:hover {
+      box-shadow: 0 6px 24px rgba(30,51,86,0.1);
+    }
+
+    .rule-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-light);
+      min-width: 26px;
+      padding-top: 2px;
+      letter-spacing: 0.06em;
+    }
+
+    .rule-body {}
+
+    .rule-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rule-title .rule-icon { font-size: 15px; }
+
+    .rule-desc {
+      font-size: 13px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    /* ── Not-anxious block ── */
+    .no-anxiety {
+      background: var(--accent-dark);
+      border-radius: 20px;
+      padding: 44px 40px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .no-anxiety.visible { opacity: 1; transform: translateY(0); }
+
+    .no-anxiety::after {
+      content: '🌙';
+      position: absolute;
+      right: 24px;
+      bottom: -20px;
+      font-size: 120px;
+      opacity: 0.05;
+    }
+
+    .no-anxiety-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    .no-anxiety-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .no-anxiety-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.65;
+    }
+
+    .no-anxiety-list li::before {
+      content: '✓';
+      color: var(--accent-light);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .no-anxiety-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 20px;
+    }
+
+    /* ── Source ── */
+    .source {
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-faint);
+      padding: 8px 0 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .rules-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+      .no-anxiety { padding: 32px 24px; }
+      .no-anxiety-title { font-size: 24px; }
+      .content { padding: 36px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="index.html">← 返回首页</a>
+  <span class="nav-logo">好好生活</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">来自 Matthew Walker</div>
+  <h1 class="hero-title">12 条睡眠黄金法则</h1>
+  <p class="hero-sub">《我们为什么要睡觉》——睡眠科学家的实用指南</p>
+</div>
+
+<div class="content">
+
+  <div class="principle-box">
+    <div class="pb-label">核心原则</div>
+    <p>如果只能记住一条，记住第 01 条。固定作息直接稳定昼夜节律——而昼夜节律是整个睡眠系统的时钟信号。所有其他法则，都在为这个节律服务。</p>
+  </div>
+
+  <div class="section-heading">12 条法则</div>
+
+  <div class="rules-grid">
+
+    <div class="rule-card">
+      <div class="rule-num">01</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">⏰</span> 固定作息</div>
+        <div class="rule-desc">每天同一时间上床、同一时间醒来，包括周末。节律一旦乱，整个系统都乱。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">02</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🏃</span> 适时运动</div>
+        <div class="rule-desc">每天运动超过 30 分钟，但须在睡前 2–3 小时结束，体温升高后需时间散热。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">03</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">☕</span> 戒咖啡因与尼古丁</div>
+        <div class="rule-desc">咖啡因需 8 小时才能完全代谢，下午喝咖啡会让你躺在床上却无法入睡。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">04</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🍷</span> 睡前不饮酒</div>
+        <div class="rule-desc">酒精让你失去 REM 深度睡眠，只在浅睡徘徊，半夜反复醒来——感觉睡了其实没睡。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">05</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🍜</span> 避免深夜进食</div>
+        <div class="rule-desc">消化活跃干扰睡眠，液体摄入过多导致频繁起夜，入睡前 2 小时停止进食。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">06</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">💊</span> 审查药物</div>
+        <div class="rule-desc">心脏病、高血压、哮喘、感冒药都可能破坏睡眠质量，如有疑虑，咨询医生。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">07</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">😴</span> 午睡别太晚</div>
+        <div class="rule-desc">下午 3 点后不午睡，否则会消耗夜间入睡所需的腺苷积累——你的"睡眠驱动力"。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">08</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">📖</span> 睡前放松</div>
+        <div class="rule-desc">阅读、听轻音乐、冥想——让交感神经平静下来，给大脑发出"要睡了"的信号。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">09</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🛁</span> 热水澡</div>
+        <div class="rule-desc">泡澡让体温先升，出浴后快速下降——正是这个温度落差，触发了大脑的困倦信号。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">10</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🌙</span> 卧室：暗、凉、无屏</div>
+        <div class="rule-desc">室温偏凉（约 18°C）、全遮光、钟表背对你——不要让时间变成焦虑的来源。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">11</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">☀️</span> 每天晒太阳</div>
+        <div class="rule-desc">每天 30 分钟以上自然光（早晨最佳），帮助校准昼夜节律；睡前调暗室内灯光。</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-num">12</div>
+      <div class="rule-body">
+        <div class="rule-title"><span class="rule-icon">🛏️</span> 睡不着就离床</div>
+        <div class="rule-desc">躺了 20 分钟睡不着，就起床做轻松活动，困了再回来。让床只和睡眠关联（CBT-I 刺激控制）。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- No anxiety block -->
+  <div class="no-anxiety">
+    <div class="no-anxiety-title">不要纠结睡眠</div>
+    <ul class="no-anxiety-list">
+      <li>睡不着没关系，躺着休息本身就有价值——身体在恢复，即使没完全睡着</li>
+      <li>不需要盯着时钟看自己睡了多久，看时间只会让焦虑叠加</li>
+      <li>停用睡眠追踪器——对睡眠的监控焦虑，本身就是失眠的来源</li>
+    </ul>
+    <div class="no-anxiety-note">
+      矛盾性失眠：越想睡好越睡不着。放下「我必须睡够 8 小时」的执念，反而是改善睡眠的第一步。接受当下的睡眠状态，比抵抗它更有效。
+    </div>
+  </div>
+
+  <div class="source">Matthew Walker · Why We Sleep · 2017</div>
+
+</div>
+
+<footer>
+  mindfulness.ainside.cn &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.rule-card, .no-anxiety');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 0);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  items.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

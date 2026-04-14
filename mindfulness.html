@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正念 · 好好生活</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --border: rgba(42,37,32,0.1);
+      --accent: #4a7c52;
+      --accent-dark: #1e3d24;
+      --accent-pale: #e3ede4;
+      --accent-light: #b0ccb3;
+      --nav-h: 60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(250,247,242,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 100;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--accent); text-decoration: none;
+      font-weight: 500; transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-logo { font-family: 'Noto Serif SC', serif; font-size: 16px; color: var(--ink); font-weight: 600; }
+
+    .hero {
+      background: var(--accent-dark);
+      padding: calc(var(--nav-h) + 56px) 24px 56px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 700;
+      color: #fff; letter-spacing: 0.04em; margin-bottom: 14px;
+    }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    .content {
+      max-width: 760px; margin: 0 auto;
+      padding: 52px 24px 80px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 36px 32px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+    }
+    .card-sub { font-size: 14px; color: var(--ink-light); margin-bottom: 28px; line-height: 1.6; }
+
+    /* ── Compare Table ── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 13.5px;
+    }
+    .compare-table th {
+      background: var(--accent-pale);
+      color: var(--accent-dark);
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .compare-table th:first-child { border-radius: 10px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 10px 0 0; }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-light);
+      line-height: 1.55;
+      vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: #f9f9f7; }
+
+    .highlight-box {
+      background: var(--accent-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--accent-dark);
+      line-height: 1.65;
+    }
+
+    /* ── Scene cards ── */
+    .scenes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      margin-bottom: 28px;
+    }
+    .scene-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .scene-icon { font-size: 28px; margin-bottom: 10px; }
+    .scene-title {
+      font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 8px;
+    }
+    .scene-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.6; }
+
+    /* ── Emergency steps ── */
+    .emergency {
+      background: var(--accent-dark);
+      border-radius: 16px;
+      padding: 24px 24px;
+      color: #fff;
+    }
+    .emergency-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px; font-weight: 600;
+      color: #fff; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .emergency-steps { display: flex; flex-direction: column; gap: 12px; }
+    .e-step { display: flex; gap: 12px; align-items: flex-start; }
+    .e-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); color: #fff;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .e-text { font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.65; padding-top: 3px; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin-bottom: 8px;
+    }
+    .faq-q {
+      padding: 16px 20px; font-size: 14px; font-weight: 500; color: var(--ink);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      user-select: none; background: #fff; transition: background 0.18s;
+    }
+    .faq-q:hover { background: var(--accent-pale); }
+    .faq-arrow { font-size: 12px; color: var(--ink-faint); transition: transform 0.25s; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      font-size: 13.5px; color: var(--ink-light); line-height: 1.7;
+      background: #fff; transition: max-height 0.3s ease;
+    }
+    .faq-a-inner { padding: 0 20px 18px; }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px; text-align: center; font-size: 13px; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .scenes { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+      .card { padding: 24px 20px; }
+      .content { padding: 32px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="index.html">← 返回首页</a>
+  <span class="nav-logo">好好生活</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">随时随地</div>
+  <h1 class="hero-title">正念入门</h1>
+  <p class="hero-sub">此刻在干什么，就真正在干什么<br>吃饭、走路、洗碗——生活本身就是练习</p>
+</div>
+
+<div class="content">
+
+  <!-- 卡片1：什么是正念 -->
+  <div class="card">
+    <div class="card-title">什么是正念？</div>
+    <div class="card-sub">正念不是一种技术，是一种存在方式——对当下时刻保持有意识的觉察，不评判。</div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>冥想</th>
+          <th>正念</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>形式</td>
+          <td>专门练习，固定时间</td>
+          <td>融入日常，随时进行</td>
+        </tr>
+        <tr>
+          <td>场景</td>
+          <td>安静坐着，闭眼</td>
+          <td>吃饭、走路、工作中</td>
+        </tr>
+        <tr>
+          <td>时长</td>
+          <td>5–20 分钟一次</td>
+          <td>哪怕 10 秒都算</td>
+        </tr>
+        <tr>
+          <td>关系</td>
+          <td>正念的训练工具</td>
+          <td>冥想练习的结果</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      「冥想是训练，正念是结果。冥想课上练习专注，正念是把这种专注带入每一刻生活。」
+    </div>
+  </div>
+
+  <!-- 卡片2：日常场景 -->
+  <div class="card">
+    <div class="card-title">生活里怎么练？</div>
+    <div class="card-sub">任何日常动作，都可以成为正念的练习场——不需要额外腾出时间</div>
+
+    <div class="scenes">
+      <div class="scene-card">
+        <div class="scene-icon">🍚</div>
+        <div class="scene-title">吃饭正念</div>
+        <div class="scene-desc">前 3 口放下手机，感受食物的温度、质地、味道。咀嚼时注意口腔里的变化。</div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🚶</div>
+        <div class="scene-title">走路正念</div>
+        <div class="scene-desc">感受脚底接触地面的压力，注意步伐的节奏，观察呼吸与步伐的配合。</div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🧼</div>
+        <div class="scene-title">洗手正念</div>
+        <div class="scene-desc">感受水的温度、泡沫的触感。这 20 秒，完全属于当下——不回顾，不计划。</div>
+      </div>
+    </div>
+
+    <div class="emergency">
+      <div class="emergency-title">🆘 情绪急救 · 1 分钟正念</div>
+      <div class="emergency-steps">
+        <div class="e-step">
+          <div class="e-num">1</div>
+          <div class="e-text"><strong>停下来</strong>——不管在做什么，先暂停一下。双脚踩地，感受脚底的重量。</div>
+        </div>
+        <div class="e-step">
+          <div class="e-num">2</div>
+          <div class="e-text"><strong>深呼吸</strong>——吸气 4 秒，呼气 6 秒，重复 3 次。让神经系统先平静下来。</div>
+        </div>
+        <div class="e-step">
+          <div class="e-num">3</div>
+          <div class="e-text"><strong>命名感受</strong>——心里说出你的感受：「我现在感到愤怒」「我很焦虑」。命名情绪会降低杏仁核的激活，让理性脑重新上线。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片3：FAQ -->
+  <div class="card">
+    <div class="card-title">常见问题</div>
+    <div class="card-sub">关于正念，你可能已经想到这些疑问</div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          正念和发呆有什么区别？
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            发呆是注意力漂走了，思绪被自动驾驶；正念是主动选择把注意力放在当下，有意识地觉察。一个被动飘走，一个主动在场——区别在于有没有那一点清醒的意图。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          正念能帮助减少焦虑吗？
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            可以。焦虑通常是"未来心"——担心还没发生的事。正念把注意力锚定在当下，切断了与未来担忧的自动连接。大量研究证实，正念减压（MBSR）对焦虑障碍和慢性压力有明显效果。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          忙碌的人真的能练正念吗？
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            正念不需要额外时间——喝咖啡时专注地喝，走路时专注地走，开会前深呼吸 3 次。越忙越需要正念，因为忙碌时大脑更容易进入"自动驾驶"模式，消耗更多认知资源。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          正念需要有宗教信仰吗？
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            不需要。现代正念实践由乔·卡巴金（Jon Kabat-Zinn）在 1970 年代将其从宗教背景中提取出来，发展成为循证的医学疗法（MBSR）。它是一种心理训练技术，与任何宗教信仰无关。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  mindfulness.ainside.cn &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  const cards = document.querySelectorAll('.card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  cards.forEach(c => obs.observe(c));
+</script>
+</body>
+</html>

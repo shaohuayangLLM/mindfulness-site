@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跑步 · 好好生活</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --border: rgba(42,37,32,0.1);
+      --accent: #8a4a2a;
+      --accent-dark: #3d1c08;
+      --accent-pale: #f0e4da;
+      --accent-light: #c4906a;
+      --nav-h: 60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0; height: var(--nav-h);
+      background: rgba(250,247,242,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 100;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--accent); text-decoration: none;
+      font-weight: 500; transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-logo { font-family: 'Noto Serif SC', serif; font-size: 16px; color: var(--ink); font-weight: 600; }
+
+    .hero {
+      background: var(--accent-dark);
+      padding: calc(var(--nav-h) + 56px) 24px 56px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 700;
+      color: #fff; letter-spacing: 0.04em; margin-bottom: 14px;
+    }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    .content {
+      max-width: 760px; margin: 0 auto;
+      padding: 52px 24px 80px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 36px 32px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+    }
+    .card-sub { font-size: 14px; color: var(--ink-light); margin-bottom: 28px; line-height: 1.6; }
+
+    /* ── Benefit grid ── */
+    .benefit-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;
+    }
+    .benefit-item {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px;
+    }
+    .benefit-icon { font-size: 24px; margin-bottom: 8px; }
+    .benefit-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+    .benefit-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.6; }
+
+    .highlight-box {
+      background: var(--accent-dark);
+      border-radius: 14px;
+      padding: 20px 24px;
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+    .highlight-box strong { color: var(--accent-light); font-style: normal; }
+
+    /* ── Heart rate bars ── */
+    .hr-section { margin-bottom: 0; }
+    .hr-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 20px; font-weight: 400;
+    }
+
+    .talk-test {
+      background: var(--accent-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--accent-dark);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .talk-test strong { font-weight: 600; }
+
+    .hr-zones { display: flex; flex-direction: column; gap: 12px; }
+    .hr-zone { display: flex; align-items: center; gap: 14px; }
+    .hz-label {
+      width: 60px; flex-shrink: 0;
+      font-size: 12px; color: var(--ink-light);
+      text-align: right;
+    }
+    .hz-bar-wrap { flex: 1; }
+    .hz-bar-bg {
+      height: 8px; background: var(--accent-pale); border-radius: 8px; overflow: hidden;
+    }
+    .hz-bar {
+      height: 100%; border-radius: 8px; background: var(--accent-light);
+      transition: width 0.6s ease;
+    }
+    .hz-bar.core { background: var(--accent); }
+    .hz-desc {
+      width: 120px; flex-shrink: 0;
+      font-size: 12px; color: var(--ink-faint);
+    }
+    .hz-range {
+      width: 80px; flex-shrink: 0;
+      font-size: 12px; color: var(--ink-light); font-weight: 500;
+    }
+
+    /* ── VO2 Max ── */
+    .vo2-stat {
+      background: var(--accent-dark);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .vo2-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--accent-light); line-height: 1;
+    }
+    .vo2-text { flex: 1; }
+    .vo2-text p { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.7; }
+    .vo2-text strong { color: #fff; }
+
+    .calc-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .calc-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px;
+    }
+    .calc-card-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+    .calc-formula {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 12px;
+      font-size: 12px; color: var(--ink-light); line-height: 1.7;
+      font-family: monospace;
+    }
+
+    .wang-quote {
+      background: var(--accent-pale);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 14px; color: var(--accent-dark); line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── Weekly plan ── */
+    .plan-highlight {
+      background: var(--accent-dark);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .plan-hl-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px; font-weight: 600; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan-rows { display: flex; flex-direction: column; gap: 10px; }
+    .plan-row { display: flex; gap: 12px; align-items: flex-start; }
+    .plan-row::before {
+      content: '●'; color: var(--accent-light);
+      flex-shrink: 0; margin-top: 2px; font-size: 10px;
+    }
+    .plan-row-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+    .plan-row-text strong { color: #fff; }
+
+    .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+    .note-item {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px;
+      font-size: 13px;
+      color: var(--ink-light);
+      line-height: 1.6;
+      text-align: center;
+    }
+    .note-item-icon { font-size: 20px; margin-bottom: 6px; }
+    .note-item-text { font-size: 12.5px; }
+
+    .ancestor-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 13.5px;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+    .ancestor-box strong { color: var(--ink); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px; text-align: center; font-size: 13px; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+      .calc-cards { grid-template-columns: 1fr; }
+      .notes-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+      .card { padding: 24px 20px; }
+      .content { padding: 32px 20px 60px; }
+      .hz-desc { display: none; }
+      .hz-range { width: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="index.html">← 返回首页</a>
+  <span class="nav-logo">好好生活</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">脑科学视角</div>
+  <h1 class="hero-title">跑步计划</h1>
+  <p class="hero-sub">有氧运动是效价最高的健康投资<br>抗抑郁、改善睡眠、让大脑生长</p>
+</div>
+
+<div class="content">
+
+  <!-- 卡片1：为什么跑步 -->
+  <div class="card">
+    <div class="card-title">跑步改变大脑</div>
+    <div class="card-sub">来自《运动改造大脑》John Ratey——运动不只是塑形，更是大脑的营养剂</div>
+
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">🧠</div>
+        <div class="benefit-title">BDNF 脑源性神经营养因子</div>
+        <div class="benefit-desc">有氧运动大量释放 BDNF，促进神经元生长与突触连接——字面意义上的"让大脑生长"。</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">😊</div>
+        <div class="benefit-title">天然抗抑郁</div>
+        <div class="benefit-desc">运动激活内源性大麻素系统，产生持久愉悦感。心率 70–80%，持续 40 分钟效果最佳。</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">📚</div>
+        <div class="benefit-title">提升学习效果</div>
+        <div class="benefit-desc">学习前做 20 分钟有氧，增加海马体活性，新信息记忆更牢固、提取更快速。</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title">抵抗压力损伤</div>
+        <div class="benefit-desc">长期有氧运动提升神经弹性，抵消皮质醇对神经元的破坏，保护大脑免受慢性压力侵蚀。</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>来自《超越百岁》Peter Attia：</strong>「经常运动的人，可以比久坐者多活 10 年，且这额外的 10 年拥有更高质量——而不是多卧床 10 年。」
+    </div>
+  </div>
+
+  <!-- 卡片2：心率区间 -->
+  <div class="card">
+    <div class="card-title">找到你的有氧区间</div>
+    <div class="card-sub">不用买心率表，说话测试是最简单、最准确的配速判断法</div>
+
+    <div class="talk-test">
+      <strong>说话测试（Talk Test）</strong><br>
+      跑步时能说出完整的句子，不用刻意停下来喘气——这就是最有效的有氧配速。能唱歌说明太慢，只能说单词说明太快。
+    </div>
+
+    <div class="hr-label">5 个心率区间</div>
+    <div class="hr-zones">
+      <div class="hr-zone">
+        <div class="hz-range">50–60%</div>
+        <div class="hz-bar-wrap">
+          <div class="hz-bar-bg">
+            <div class="hz-bar" style="width:20%"></div>
+          </div>
+        </div>
+        <div class="hz-desc">热身与恢复</div>
+        <div class="hz-label" style="width:auto;text-align:left;color:var(--ink-faint);font-size:12px;">🚶 热身</div>
+      </div>
+      <div class="hr-zone">
+        <div class="hz-range">61–70%</div>
+        <div class="hz-bar-wrap">
+          <div class="hz-bar-bg">
+            <div class="hz-bar" style="width:40%"></div>
+          </div>
+        </div>
+        <div class="hz-desc">主要燃脂供能</div>
+        <div class="hz-label" style="width:auto;text-align:left;color:var(--ink-faint);font-size:12px;">🔥 燃脂</div>
+      </div>
+      <div class="hr-zone">
+        <div class="hz-range">71–80%</div>
+        <div class="hz-bar-wrap">
+          <div class="hz-bar-bg">
+            <div class="hz-bar core" style="width:70%"></div>
+          </div>
+        </div>
+        <div class="hz-desc">锻炼心肺 ★核心</div>
+        <div class="hz-label" style="width:auto;text-align:left;color:var(--accent);font-size:12px;font-weight:600;">❤️ 有氧</div>
+      </div>
+      <div class="hr-zone">
+        <div class="hz-range">81–90%</div>
+        <div class="hz-bar-wrap">
+          <div class="hz-bar-bg">
+            <div class="hz-bar" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="hz-desc">提升乳酸耐受性</div>
+        <div class="hz-label" style="width:auto;text-align:left;color:var(--ink-faint);font-size:12px;">⚡ 无氧</div>
+      </div>
+      <div class="hr-zone">
+        <div class="hz-range">91–100%</div>
+        <div class="hz-bar-wrap">
+          <div class="hz-bar-bg">
+            <div class="hz-bar" style="width:100%"></div>
+          </div>
+        </div>
+        <div class="hz-desc">有经验者专用</div>
+        <div class="hz-label" style="width:auto;text-align:left;color:var(--ink-faint);font-size:12px;">🔴 极限</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片3：VO2 Max -->
+  <div class="card">
+    <div class="card-title">VO2 Max · 心肺适能</div>
+    <div class="card-sub">最大摄氧量——《超越百岁》Peter Attia 认为这是预测寿命最重要的单一指标</div>
+
+    <div class="vo2-stat">
+      <div class="vo2-num">4×</div>
+      <div class="vo2-text">
+        <p>心肺适能处于<strong>最差</strong>的人群，与处于<strong>最好</strong>人群相比，死亡风险相差约 4 倍。这一差距远超吸烟、糖尿病等传统风险因素。</p>
+      </div>
+    </div>
+
+    <div class="calc-cards">
+      <div class="calc-card">
+        <div class="calc-card-title">方法一 · 静息心率估算</div>
+        <div class="calc-formula">
+          最大心率 = 208 − 0.7 × 年龄<br><br>
+          VO2 Max = 15.3 × 最大心率 ÷ 静息心率
+        </div>
+      </div>
+      <div class="calc-card">
+        <div class="calc-card-title">方法二 · 2440 米跑步测试</div>
+        <div class="calc-formula">
+          全力跑完 2440 米<br>记录用时（分钟）<br><br>
+          VO2 Max = 483 ÷ 用时 + 3.5
+        </div>
+      </div>
+    </div>
+
+    <div class="wang-quote">
+      「心肺功能不达同龄人前 25%，其他所有养生手段——饮食、睡眠、补剂——都是在边际上打转，难以弥补这一核心短板。」——王川
+    </div>
+  </div>
+
+  <!-- 卡片4：每周方案 -->
+  <div class="card">
+    <div class="card-title">每周怎么安排？</div>
+    <div class="card-sub">来自《运动改造大脑》John Ratey 的最优方案，兼顾效果与可持续性</div>
+
+    <div class="plan-highlight">
+      <div class="plan-hl-title">⭐ 最优方案 · 每周 6 天，约 6 小时</div>
+      <div class="plan-rows">
+        <div class="plan-row">
+          <div class="plan-row-text"><strong>4 天 × 1 小时</strong> 中等强度有氧（心率 65–75%）——维持基础心肺适能，促进 BDNF 分泌</div>
+        </div>
+        <div class="plan-row">
+          <div class="plan-row-text"><strong>2 天 × 45 分钟</strong> 高强度有氧（心率 75–90%）——刺激神经可塑性，提升 VO2 Max 上限</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes-grid">
+      <div class="note-item">
+        <div class="note-item-icon">⚠️</div>
+        <div class="note-item-text">高强度不要连续安排，两次之间至少间隔 1 天</div>
+      </div>
+      <div class="note-item">
+        <div class="note-item-icon">😴</div>
+        <div class="note-item-text">每周至少 1 天完全休息，让肌肉和神经系统恢复</div>
+      </div>
+      <div class="note-item">
+        <div class="note-item-icon">🛑</div>
+        <div class="note-item-text">身体有不适立刻停止，不逞能——来自王川的忠告</div>
+      </div>
+    </div>
+
+    <div class="ancestor-box">
+      <strong>遵循祖先的运动节奏</strong>（《运动改造大脑》）<br>
+      人类身体是为持续运动进化而来：每天低强度行走或慢跑，每周数次中长距离耐力跑，偶尔高强度短跑冲刺。这个节奏与我们基因最匹配，也是最可持续的运动模式。
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  mindfulness.ainside.cn &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  cards.forEach(c => obs.observe(c));
+</script>
+</body>
+</html>
