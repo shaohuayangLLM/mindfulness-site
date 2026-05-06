@@ -145,6 +145,27 @@
     }
     .scene-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.6; }
 
+    /* ── 一行禅师语录 ── */
+    .master-quotes {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .master-quote {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px; border-radius: 14px;
+      background: var(--paper); border: 1px solid var(--border);
+    }
+    .mq-icon {
+      font-size: 22px; flex-shrink: 0; margin-top: 2px;
+    }
+    .mq-text {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px; color: var(--ink); line-height: 1.8;
+      font-style: italic;
+    }
+    .mq-text em {
+      font-style: normal; color: var(--accent-dark); font-weight: 600;
+    }
+
     /* ── Emergency steps ── */
     .emergency {
       background: var(--accent-dark);
@@ -285,12 +306,12 @@
       <div class="scene-card">
         <div class="scene-icon">🚶</div>
         <div class="scene-title">走路正念</div>
-        <div class="scene-desc">感受脚底接触地面的压力，注意步伐的节奏，观察呼吸与步伐的配合。</div>
+        <div class="scene-desc">感受脚底踩在大地上的重量——这一步，就是奇迹本身。注意蓝天、树叶、身边的声音。</div>
       </div>
       <div class="scene-card">
-        <div class="scene-icon">🧼</div>
-        <div class="scene-title">洗手正念</div>
-        <div class="scene-desc">感受水的温度、泡沫的触感。这 20 秒，完全属于当下——不回顾，不计划。</div>
+        <div class="scene-icon">🍜</div>
+        <div class="scene-title">洗碗正念</div>
+        <div class="scene-desc">洗碗时只是洗碗，不去想洗完要做什么。感受水温、碗的重量。这一刻完整地存在。</div>
       </div>
     </div>
 
@@ -308,6 +329,32 @@
         <div class="e-step">
           <div class="e-num">3</div>
           <div class="e-text"><strong>命名感受</strong>——心里说出你的感受：「我现在感到愤怒」「我很焦虑」。命名情绪会降低杏仁核的激活，让理性脑重新上线。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 一行禅师语录 -->
+  <div class="card">
+    <div class="card-title">一行禅师说</div>
+    <div class="card-sub">《正念的奇迹》中三句话，值得反复回味</div>
+    <div class="master-quotes">
+      <div class="master-quote">
+        <div class="mq-icon">🍜</div>
+        <div class="mq-text">
+          洗碗的时候，一个人就应当<em>只是洗碗</em>。如果洗碗时只想着那杯茶，就不会洗碗，也不会喝茶——会沉浸于对未来的遐思中，不能真正过好生命里的哪怕一分钟。
+        </div>
+      </div>
+      <div class="master-quote">
+        <div class="mq-icon">🌿</div>
+        <div class="mq-text">
+          真正的奇迹，既不是在水上行走，也不是在稀薄的空气里行走，而是<em>行走于大地上</em>。蓝天、白云、绿叶——所有这些都是一个奇迹。
+        </div>
+      </div>
+      <div class="master-quote">
+        <div class="mq-icon">🌬️</div>
+        <div class="mq-text">
+          什么是人生最大的奇迹？是你每天能够<em>吐出一口气，还能吸进来</em>。你的身体就会运转，你这个人就会活着。
         </div>
       </div>
     </div>
@@ -352,6 +399,18 @@
         <div class="faq-a">
           <div class="faq-a-inner">
             正念不需要额外时间——喝咖啡时专注地喝，走路时专注地走，开会前深呼吸 3 次。越忙越需要正念，因为忙碌时大脑更容易进入"自动驾驶"模式，消耗更多认知资源。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          重复默念"我在走路"算正念吗？
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            不算，或者说不完整。一行禅师说：<strong>机械思维是正念的对立面。</strong>如果只是机械重复那个念头，注意力反而会从当下溜走——只是换了一种形式的走神。真正的正念是活的：随每一步的真实感受更新，始终指向正在发生的身体感觉，而不是一个固定的语言标签。
           </div>
         </div>
       </div>
