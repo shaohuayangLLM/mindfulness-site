@@ -408,6 +408,81 @@
     .compare-table td.c-med { color: var(--gold); }
     .compare-table tr:last-child td { border-bottom: none; }
 
+    /* Detail section (深入了解) */
+    .detail {
+      margin: 28px 0; padding: 0;
+    }
+    .detail-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 14px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+      color: var(--ink-light);
+    }
+    .card.is-mind .detail-label { color: var(--terra); }
+    .card.is-med .detail-label { color: var(--gold); }
+    .card.is-cbt .detail-label { color: var(--slate); }
+    .card.is-mbct .detail-label { color: var(--sage); }
+    .card.is-act .detail-label { color: var(--plum); }
+    .detail p {
+      font-size: 14px; line-height: 1.85; color: var(--ink-light);
+      margin-bottom: 14px;
+    }
+    .detail p strong { color: var(--ink); font-weight: 600; }
+    .detail h4 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 14.5px; font-weight: 700; color: var(--ink);
+      margin-top: 18px; margin-bottom: 8px;
+    }
+    .detail ul {
+      margin: 8px 0 16px 0; padding-left: 0; list-style: none;
+    }
+    .detail li {
+      font-size: 13.5px; line-height: 1.8; color: var(--ink-light);
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .detail li::before {
+      content: '·'; position: absolute; left: 6px;
+      color: var(--ink-faint); font-weight: 700;
+    }
+    .detail li b { color: var(--ink); font-weight: 600; }
+
+    /* Autism support section */
+    .autism {
+      margin: 24px 0 8px; padding: 22px 26px;
+      background: #f7f0e3; border-radius: 12px;
+      border-left: 3px solid #a78b6a;
+    }
+    .autism-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #8a6d4a;
+      margin-bottom: 12px;
+    }
+    .autism-tag::before {
+      content: ''; display: inline-block; width: 14px; height: 1.5px;
+      background: #a78b6a;
+    }
+    .autism h4 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px; font-weight: 700; color: var(--ink);
+      margin-bottom: 10px; line-height: 1.5;
+    }
+    .autism p {
+      font-size: 13.5px; line-height: 1.85; color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+    .autism p strong { color: #6e5839; font-weight: 600; }
+    .autism ul { margin: 10px 0; padding-left: 0; list-style: none; }
+    .autism li {
+      font-size: 13px; line-height: 1.8; color: var(--ink-light);
+      padding-left: 22px; position: relative; margin-bottom: 8px;
+    }
+    .autism li::before {
+      content: ''; position: absolute; left: 4px; top: 10px;
+      width: 10px; height: 1.5px; background: #a78b6a;
+    }
+    .autism li b { color: var(--ink); font-weight: 600; }
+
     /* CTA back to inbox */
     .cta-back {
       margin: 60px auto 40px; max-width: 520px; padding: 28px 32px;
@@ -531,6 +606,36 @@
       <span class="i-tag">关键澄清</span>
       <b>正念 ≠ 冥想。</b>正念是一种<b>状态</b>（在当下、不评判地觉知），冥想是<b>训练这种状态的方法</b>之一。你可以坐着冥想以培养正念，但走路、洗碗、吃饭时也都可以保持正念——只要那一刻你的心确实在你正在做的事上。
     </div>
+
+    <div class="detail">
+      <div class="detail-label">深入了解 · 正念是怎样运作的</div>
+      <p><strong>核心机制：</strong>正念通过持续把注意力带回当下，训练大脑前额叶（执行控制网络）与杏仁核（情绪反应中枢）之间的连接。神经科学发现，长期正念练习会让杏仁核体积变小、前额叶皮层增厚——也就是说，你越能"看见情绪"，情绪就越难直接劫持你的行动。</p>
+
+      <h4>典型练习</h4>
+      <ul>
+        <li><b>正念呼吸：</b>把注意力放在气流过鼻孔/胸腹起伏，每次走神就温柔地拉回。每天 5–10 分钟。</li>
+        <li><b>身体扫描：</b>从脚趾到头顶逐一觉察身体感受——不评价、不试图改变。</li>
+        <li><b>正念行走：</b>觉察脚掌触地的感觉、身体的重心移动、风/光的变化。</li>
+        <li><b>正念吃饭：</b>专注一口的味道、温度、咀嚼感——不刷手机、不看视频。</li>
+        <li><b>三分钟呼吸空间：</b>任何时刻可做的迷你正念，第一分钟觉察、第二分钟聚焦呼吸、第三分钟扩展全身。</li>
+      </ul>
+
+      <h4>谁不适合一开始就练正念？</h4>
+      <p>有重度抑郁急性期、PTSD 闪回严重期、精神病性症状的人——直接独自练正念可能让人被压抑的情绪冲垮。这些情况建议在治疗师陪伴下进行（MBCT 临床团体课程更稳）。</p>
+    </div>
+
+    <div class="autism">
+      <span class="autism-tag">对自闭症群体的帮助</span>
+      <h4>正念是自闭症儿童与成人最被研究的辅助工具之一</h4>
+      <p>近十年发表的多项随机对照试验（如 MYmind 项目、Singh 团队的 Soles of the Feet 方案）显示，<strong>正念训练对高功能自闭症人群</strong>有可观的效果——主要在情绪调节、感官超载缓冲、社交焦虑减轻三个维度。</p>
+      <ul>
+        <li><b>情绪洪水的缓冲：</b>自闭症人群常因感官刺激或环境突变出现 meltdown。正念训练教孩子在情绪起来的瞬间"看见"它（"我现在很难受"）——这个看见本身就在情绪和行动之间塞进缝隙，让升级到崩溃的概率下降。</li>
+        <li><b>感官超载的应对："Soles of the Feet"</b>是专为自闭症设计的快速正念技术：感觉超载时，把注意力从耳朵/眼睛转移到脚底——一个安全的、稳定的躯体锚点。</li>
+        <li><b>不评判 = 自我接纳：</b>很多自闭症孩子从小被反复纠正"应该这样做才对"。正念的"看见而不评判"对他们是<strong>最珍贵的内在资源</strong>——它教他们：你此刻的状态本身是 OK 的，不需要先变好才被允许存在。</li>
+        <li><b>对家长同等重要：</b>自闭症儿童家长的焦虑/抑郁率显著高于平均。家长自己练正念，不仅自身受益，还能给孩子示范"情绪起来时怎么处理"——这比任何说教更有效。</li>
+      </ul>
+      <p><strong>实操起点：</strong>对自闭症儿童（尤其学龄期），不要一开始就要求"坐下来打坐"——大多数感官敏感的孩子无法忍受。从<strong>5 分钟正念吃饭</strong>或<strong>2 分钟脚底觉察</strong>这样具身、具体、有锚点的练习开始，比抽象的"观呼吸"更容易上手。</p>
+    </div>
   </div>
 </section>
 
@@ -572,6 +677,36 @@
     <div class="insight">
       <span class="i-tag">常见混淆</span>
       <b>"冥想 = 把脑子放空"</b>是最大的误解。冥想的目标不是"没有念头"——那既不可能也不必要。目标是<b>对正在发生的念头保持觉知</b>，然后选择是跟着它走，还是让它过去。这跟"空无"是两件事。
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">深入了解 · 冥想的家族树</div>
+      <p><strong>历史脉络：</strong>"冥想"在不同文化里有完全不同的形态——印度的瑜伽冥想（Yoga Meditation）追求与梵合一；藏传佛教的本尊观想是一种结构化的视觉化训练；日本禅宗的只管打坐（Shikantaza）追求"什么都不做地坐着"；超越冥想（TM）则使用咒语作为锚点。它们都被叫做"冥想"，但内在机制差别很大。</p>
+
+      <h4>主流冥想类型</h4>
+      <ul>
+        <li><b>专注式（Samatha / 止）：</b>把注意力固定在一个对象上，培养"定力"。代表：观呼吸、咒语、烛火凝视。</li>
+        <li><b>开放觉知式（Vipassana / 观）：</b>对所有经过意识的事物保持平等觉知，看清"无常"。代表：内观禅修。</li>
+        <li><b>慈悲冥想（Metta）：</b>主动培养无差别的慈悲心。代表："愿一切众生快乐安详"的反复念诵。</li>
+        <li><b>引导式冥想（Guided）：</b>跟着语音指引进入特定状态。代表：Headspace、Calm 等 app 的内容。</li>
+        <li><b>动态冥想：</b>不必静坐——行禅、太极、瑜伽体式都属于把觉知带入身体动作的冥想。</li>
+      </ul>
+
+      <h4>每天多久才有效？</h4>
+      <p>研究文献的共识是<strong>每天 10–20 分钟，持续 8 周以上</strong>会出现可测量的大脑变化（杏仁核活跃度下降、默认模式网络重构）。但<strong>每天 5 分钟规律地做</strong>，远好于<strong>每周一次 60 分钟</strong>。规律性的优先级高于时长。</p>
+    </div>
+
+    <div class="autism">
+      <span class="autism-tag">对自闭症群体的帮助</span>
+      <h4>冥想是自闭症人群感官调节的"避风港"</h4>
+      <p>自闭症大脑的一个核心特点是<strong>感官输入难以过滤</strong>——光、声、温度、气味、人群的存在感全部以同等强度涌入，造成持续的认知负担。冥想（特别是专注式冥想）通过把注意力收束到一个简单对象上，相当于<strong>暂时关闭了大部分感官通道</strong>，给神经系统一段休息时间。</p>
+      <ul>
+        <li><b>专注式冥想 = 可控的感官隔离：</b>把注意力放在呼吸或一个声音上，其他感官刺激相对退后。对感官超载的孩子，这是一种"自主关灯"的能力。</li>
+        <li><b>动态冥想适合坐不住的孩子：</b>静坐对很多自闭症儿童几乎不可能。<strong>正念行走、瑜伽、太极、慢节奏游泳</strong>都是有效替代——身体在动，但注意力在身体的动作上。</li>
+        <li><b>慈悲冥想对社交认知有帮助：</b>自闭症儿童对"他人有不同感受"的理解（心智理论）发育较慢。慈悲冥想通过反复想象不同的人、希望他们快乐，<strong>是一种安全的"练习关心他人"的方式</strong>，不需要现场社交压力。</li>
+        <li><b>对睡眠困难特别有效：</b>自闭症儿童的入睡困难、夜醒频繁是普遍问题。睡前 10 分钟的引导式身体扫描或白噪音冥想，可以显著改善入睡时间。</li>
+      </ul>
+      <p><strong>实操起点：</strong>有自闭症的孩子尝试冥想时，<strong>必须有具体可感的锚点</strong>——抽象的"觉察呼吸"对他们太空。可以用：握一颗鹅卵石、看着鱼缸里的鱼、听着固定旋律的钟声。把"冥想"包装成"和这颗石头待在一起 5 分钟"，比让他"放空"成功率高得多。</p>
     </div>
   </div>
 </section>
@@ -622,6 +757,45 @@
     <div class="insight">
       <span class="i-tag">与正念的关系</span>
       CBT 已经使用了"<b>观察者</b>"的初级形态——它教人退一步看自己的思维（"我此刻在想 X"）。但 CBT 把<b>念头当作对象</b>来处理：识别它、挑战它、替换它。这跟一行禅师"<b>认知到它就足够了，不要执著其中或试图消除它</b>"的态度有本质不同——CBT 还在分别心里（这是好念头，那是坏念头），而正念是无分别地觉知。
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">深入了解 · CBT 是怎么治病的</div>
+      <p><strong>核心动作：</strong>CBT 把模糊的"我心情不好"分解成可观察的三件事——具体场景、自动思维、情绪/行为反应。然后用证据法挑战那个不合理的自动思维，用更平衡的认知替换它。整个过程像做一道思考题，有清晰的步骤。</p>
+
+      <h4>典型的"思维记录"五栏</h4>
+      <ul>
+        <li><b>1. 情境：</b>"今天开会时我说错了一句话"</li>
+        <li><b>2. 情绪：</b>"羞愧 80% / 焦虑 70%"（用百分比标定强度）</li>
+        <li><b>3. 自动思维：</b>"大家都觉得我很蠢，以后再也没人愿意听我说话"</li>
+        <li><b>4. 证据：</b>支持的证据 vs 反对的证据。"反对：上周我提的方案大家采纳了；同事下午还约我喝咖啡。"</li>
+        <li><b>5. 替代思维：</b>"我说错了一句话，大家可能注意到了，但不至于因此否定我"</li>
+      </ul>
+
+      <h4>CBT 的常见技术</h4>
+      <ul>
+        <li><b>认知重构：</b>识别和挑战"灾难化""非黑即白""过度概括"等典型的认知扭曲。</li>
+        <li><b>暴露与反应预防（ERP）：</b>对焦虑/强迫症，循序渐进地暴露在害怕的情境中，不做回避动作，让恐惧自然下降。</li>
+        <li><b>行为激活：</b>对抑郁症，先做"会让自己稍微好一点"的小行动（散步、洗澡、给朋友发一句话），让情绪跟着行动走。</li>
+        <li><b>苏格拉底式提问：</b>治疗师不直接给结论，而是用一连串问题引导来访者自己发现思维的不合理处。</li>
+      </ul>
+
+      <h4>多久见效？</h4>
+      <p>CBT 是<strong>短程导向</strong>的疗法——大多数适应症的标准疗程是<strong>12–20 次会谈</strong>，每周 1 次。比传统精神分析（可能持续多年）效率高得多，这也是它被医保广泛覆盖的原因。</p>
+    </div>
+
+    <div class="autism">
+      <span class="autism-tag">对自闭症群体的帮助</span>
+      <h4>"适应版 CBT"是自闭症共病焦虑/抑郁的一线治疗</h4>
+      <p>自闭症人群的焦虑症共病率高达 40–50%，抑郁症共病率约 25%。<strong>专门为自闭症设计的 CBT 改编版</strong>（Adapted CBT for ASD，如 Facing Your Fears、BIACA、PASS 等方案）是循证最好的干预之一。它对原版 CBT 做了几个关键改造：</p>
+      <ul>
+        <li><b>具象化代替抽象：</b>把"焦虑"画成温度计、画成怪兽、画成颜色——用孩子能感知的视觉符号代替抽象语言。"焦虑温度计今天到几度了？"比"你现在感觉怎样？"有效十倍。</li>
+        <li><b>结构化、可预测：</b>每次会谈用相同的开场、相同的流程、相同的结束方式。自闭症孩子对常规变化敏感，可预测的结构让他们能放心进入治疗状态。</li>
+        <li><b>具体情境而非泛化：</b>不教"如何应对社交焦虑"——而是教"周三参加生日聚会前怎么准备"。把抽象的应对策略锚定在具体场景。</li>
+        <li><b>引入特殊兴趣作为切入点：</b>很多自闭症孩子有强烈的特殊兴趣（火车、恐龙、地图等）。优秀的治疗师会把 CBT 概念用孩子熟悉的兴趣框架解释——比如用火车进站调度来比喻"思维分类"。</li>
+        <li><b>家长高度参与：</b>儿童版 ASD-CBT 一般要求家长全程参与，因为很多技术需要在日常生活里反复练习，孩子无法独立完成迁移。</li>
+      </ul>
+      <p><strong>注意：</strong>对智力或语言发育明显受限的自闭症儿童，标准 CBT 不适用——需要更具身的方案（行为干预 + 视觉支持 + 社交故事）。CBT 主要适合<strong>有口语表达能力、能进行基本反思</strong>的高功能自闭症人群。</p>
     </div>
   </div>
 </section>
@@ -691,6 +865,48 @@
       <span class="i-tag">与正念的关系</span>
       <b>MBCT 是西方临床心理学最忠实地翻译佛家正念的一支。</b>核心机制——观察念头但不评价、不替换——基本就是一行禅师所讲的方法的世俗化版本。差别在于：MBCT 是为<b>临床治疗</b>设计的，所以保留了治疗师角色、八周课程、循证评估等结构；而原始的正念修行是为<b>全人发展</b>设计的，没有时间表，是一辈子的事。
     </div>
+
+    <div class="detail">
+      <div class="detail-label">深入了解 · MBCT 的八周课程</div>
+      <p><strong>循证基础：</strong>MBCT 最早是为<strong>预防抑郁症复发</strong>设计的——研究发现，对发作过 3 次以上的患者，MBCT 比维持性抗抑郁药物更能预防复发。后来被扩展用于焦虑障碍、慢性疼痛、癌症患者心理支持等。</p>
+
+      <h4>八周课程的标准结构</h4>
+      <ul>
+        <li><b>第 1 周 · 自动驾驶：</b>觉察日常的"无意识"模式——刷手机吃饭、走路想心事。从"葡萄干练习"开始（用 5 分钟正念吃一颗葡萄干）。</li>
+        <li><b>第 2 周 · 与念头共处：</b>区分"事实"和"念头对事实的解释"。"我不行" ≠ "我真的不行"。</li>
+        <li><b>第 3 周 · 聚集分散的心：</b>正式坐禅练习开始；引入<strong>三分钟呼吸空间</strong>。</li>
+        <li><b>第 4 周 · 识别厌恶反应：</b>看清"想推开不舒服感受"这个反射动作本身才是痛苦的放大器。</li>
+        <li><b>第 5 周 · 允许 / 让它在：</b>不再试图改变难受的感受，而是给它腾出空间。</li>
+        <li><b>第 6 周 · 念头不是事实：</b>核心命题。学会把念头当成"心智事件"而非"我"。</li>
+        <li><b>第 7 周 · 怎么照顾自己：</b>识别个人的复发预警信号，建立行动计划。</li>
+        <li><b>第 8 周 · 维持与延伸：</b>课程结束后如何把练习带入余生。</li>
+      </ul>
+
+      <h4>MBCT 的"招牌技术"</h4>
+      <p><strong>三分钟呼吸空间</strong>——任何时刻可做的迷你正念，是 MBCT 在日常生活的桥梁：</p>
+      <ul>
+        <li><b>第一分钟（觉察）：</b>停下来，问自己"我现在的身体感受、情绪、念头是什么？"——不评价，只觉察。</li>
+        <li><b>第二分钟（聚焦）：</b>把所有注意力收束到呼吸上，感受气流过鼻孔、胸腹起伏。</li>
+        <li><b>第三分钟（扩展）：</b>把觉知扩展到全身——身体作为整体存在于此刻。</li>
+      </ul>
+
+      <h4>怎么找到 MBCT 课程</h4>
+      <p>MBCT 是高度结构化的临床方案——必须由经过认证的导师带领的<strong>八周团体课程</strong>，自己看书很难复制。在中国，目前部分大型医院的精神科、医学心理科、以及少数正念中心提供 MBCT 课程。Oxford Mindfulness Centre 和 UCSD Center for Mindfulness 的认证导师在线课程是国际公认的入口。</p>
+    </div>
+
+    <div class="autism">
+      <span class="autism-tag">对自闭症群体的帮助</span>
+      <h4>MBCT 对高功能自闭症青少年和成人有显著效果</h4>
+      <p>MYmind 项目是目前最被研究的自闭症青少年正念干预——由荷兰团队 Susan Bögels 等开发，以 MBCT 为基础，专门改编用于自闭症青少年和家长的<strong>双轨平行课程</strong>。多项随机对照试验显示，参与的青少年在<strong>注意力、情绪反应性、自我控制</strong>三个维度均有显著改善，效果在课程结束 9 周和 1 年后仍然保持。</p>
+      <ul>
+        <li><b>"念头不是事实"对自闭症人群有特殊价值：</b>很多高功能自闭症人群有严重的反刍思维（rumination）——同一个想法反复播放无法停止。MBCT 教他们看见"哦，又是那个想法"，而不是被它带走。这是<strong>少数能减少反刍的循证技术</strong>。</li>
+        <li><b>感官 + 念头的双重觉察：</b>MBCT 同时训练对身体感觉和念头的觉察——这正好对应自闭症人群最受困的两个层面（感官超载 + 思维卡死）。</li>
+        <li><b>预防情绪 meltdown 升级：</b>三分钟呼吸空间是非常实用的"中断升级"技术——在感觉自己快崩溃但还没崩溃的窗口期使用，可以把 meltdown 概率降低很多。</li>
+        <li><b>家长平行课程同等重要：</b>MYmind 的核心创新是<strong>家长和孩子同时上课</strong>——家长学习用正念应对自己的反应（焦虑、内疚、控制欲），孩子学习应对自己的情绪和注意力。两边一起改变，效果远好于单方面治疗。</li>
+        <li><b>"我注意到一个'我跟别人不一样'的念头"：</b>这种去中心化的语言改写，对自我接纳有持续作用——尤其在青春期，自闭症青少年开始意识到自己与同龄人的差异时，这种技术能减少深度的自我否定。</li>
+      </ul>
+      <p><strong>实操建议：</strong>如果在国内找不到 MYmind 改编课程，可以自己实施一个简化版——每天和孩子一起做 3 分钟呼吸空间、用绘本式语言讨论"今天有什么念头来过"、家长自己同步坚持每天 10 分钟正念。<strong>家长的参与质量决定了效果上限</strong>，远大于孩子单独做的效果。</p>
+    </div>
   </div>
 </section>
 
@@ -744,6 +960,46 @@
     <div class="insight">
       <span class="i-tag">与正念的关系</span>
       ACT 比 MBCT 更哲学化——它直接挑战"应该消除痛苦"这个西方心理学的隐含前提。它的"去融合"技术跟禅宗"我是我的观察者"几乎是同一个机制；它的"价值导向"则更像佛家"菩萨道"的世俗化——<b>不为自己解脱而修，是为更大的事而活。</b>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">深入了解 · ACT 的六过程模型</div>
+      <p><strong>核心命题：</strong>ACT 假设——大多数心理痛苦不是来自"症状"本身，而是来自<strong>试图控制不可控的内在经验</strong>（"我必须不焦虑""我不能感到悲伤"）。这种控制反而让症状被强化和扩大。ACT 的目标不是"感觉好"，而是<strong>不论感觉如何，仍然过自己想要的人生</strong>。</p>
+
+      <h4>ACT 的六个核心过程（六边形模型）</h4>
+      <ul>
+        <li><b>1. 接纳（Acceptance）：</b>停止对抗内在经验。让焦虑、悲伤、愤怒来去自如，不试图压抑或消除。</li>
+        <li><b>2. 认知去融合（Cognitive Defusion）：</b>把念头看作念头，而不是事实。"我是失败者" → "我有一个'我是失败者'的念头"。</li>
+        <li><b>3. 接触当下（Present Moment Awareness）：</b>把意识带回到此时此刻——不是过去也不是未来。这是 ACT 与正念的直接交集。</li>
+        <li><b>4. 自我观察（Self-as-Context）：</b>体验到"观察的那个我"是稳定的，与不断变化的念头、情绪分开。这是 ACT 最玄但最强的概念——你不是你的故事，你是<strong>讲故事的那个空间</strong>。</li>
+        <li><b>5. 价值澄清（Values）：</b>明确"什么对我真正重要"——不是目标（具体可达成的事），而是方向（一辈子值得朝向的东西，如成为善良的父母、有创造力的人）。</li>
+        <li><b>6. 承诺行动（Committed Action）：</b>把价值翻译成此刻可做的具体行动——即使带着焦虑、不确定、不完美。</li>
+      </ul>
+
+      <h4>典型的 ACT 练习</h4>
+      <ul>
+        <li><b>"叶子顺流而下"：</b>想象自己坐在河边，每出现一个念头，把它放在一片叶子上看着它漂走。不抓也不推。</li>
+        <li><b>"我有一个'X'的念头"：</b>每当一个困扰的想法出现，把它从"X"重写为"我注意到我有一个 X 的念头"——立刻就有距离了。</li>
+        <li><b>葬礼想象：</b>想象自己 80 岁的葬礼上，希望被怀念的人怎样描述你？这些描述就是你的<strong>价值</strong>，往那里走。</li>
+        <li><b>"愿意度刻度"：</b>从 0 到 10 评分——"我此刻有多愿意带着这份焦虑去做这件重要的事？"愿意度低就先往上挪一点。</li>
+      </ul>
+
+      <h4>ACT 跟正佛教的呼应</h4>
+      <p>ACT 比 MBCT 更明显地接通了佛家思想——"接纳"对应"接受四圣谛之苦谛"，"去融合"对应"破我执"，"自我观察"对应"觉性"，"价值导向行动"对应"菩萨道"。Hayes 本人公开承认 ACT 受佛教启发，但同时保持完全的世俗化语言。</p>
+    </div>
+
+    <div class="autism">
+      <span class="autism-tag">对自闭症群体的帮助</span>
+      <h4>ACT 对成人自闭症人群的"神经多样性接纳"特别有力</h4>
+      <p>近五年 ACT 在成人自闭症领域的应用快速增长。原因是：<strong>ACT 的核心命题"不需要消除症状才能过好人生"</strong>正好契合自闭症"是神经多样性而非疾病"的现代认识。它不要求人变得"更正常"——它教人<strong>带着自己本来的样子</strong>去做对自己重要的事。</p>
+      <ul>
+        <li><b>对内化的"病理叙事"做去融合：</b>很多成人自闭症人群从小听到"你不正常""你有问题""你应该改变"——这些话内化成了自动思维。ACT 的"我有一个'我有问题'的念头"技术，把这些被强加的标签从"我"里剥离出来。</li>
+        <li><b>价值导向 = 不被社交焦虑卡住：</b>很多自闭症成人因社交焦虑而退缩。ACT 不教他们"消除社交焦虑"——而是问"什么对你真正重要？如果有联结对你重要，就带着焦虑去联结，而不是等焦虑消失"。</li>
+        <li><b>接受感官敏感作为常态：</b>不再花精力对抗"为什么我对声音/光这么敏感"，而是接受这是身体的特点，然后<strong>把节省下来的能量用来设计适合自己的环境</strong>（耳塞、墨镜、安静角落）。</li>
+        <li><b>对自闭症身份认同的支持：</b>近年的"自闭症骄傲"（Autism Pride）运动跟 ACT 的精神高度一致——不是要"治好"自闭症，而是接纳神经多样性是人类完整性的一部分。</li>
+        <li><b>对家长尤其重要：</b>很多自闭症孩子家长被"应该把孩子矫正成正常人"的念头折磨多年。ACT 的"接纳 + 价值"框架可以帮家长从这个执念里出来——<strong>放弃"让孩子变正常"的目标，转向"让孩子在自己的方式里活得好"的目标</strong>。这是观念上的根本转变，比任何具体技巧都更解放。</li>
+      </ul>
+      <p><strong>"幸福陷阱"作为入门：</strong>Russ Harris 的《幸福陷阱》（The Happiness Trap）是 ACT 最易读的入门书，被广泛推荐给自闭症人群和他们的家庭。它用大量比喻和漫画讲清楚 ACT 的所有核心概念，没有专业术语门槛。中文版已出版。</p>
     </div>
   </div>
 </section>
