@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正念冥想 · 谱系进阶 — 从佛家到现代心理治疗</title>
+  <meta name="description" content="正念、冥想、CBT、MBCT、ACT — 五个流派的演化谱系与实操对应。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --cream-dark: #ede7d9;
+      --paper: #faf7f2;
+      --ink: #2a2520;
+      --ink-light: #6b6560;
+      --ink-faint: #a8a099;
+      --terra: #c4714a;
+      --terra-light: #e8b49a;
+      --terra-pale: #f5e6de;
+      --sage: #6b8f71;
+      --sage-pale: #e3ede4;
+      --gold: #b8960c;
+      --gold-pale: #f5f0d0;
+      --slate: #6f7080;
+      --slate-pale: #e6e6ea;
+      --plum: #8a7494;
+      --plum-pale: #ece5ef;
+      --border: rgba(42,37,32,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-wrap: pretty;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,240,232,0.88);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px; font-weight: 700; color: var(--ink);
+      letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-brand small {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 11px; font-weight: 400; color: var(--ink-faint);
+      letter-spacing: 0.1em; margin-left: 8px;
+    }
+    .nav-back {
+      font-size: 12px; color: var(--ink-light);
+      text-decoration: none;
+      padding: 4px 12px; border-radius: 20px;
+      transition: all .2s;
+    }
+    .nav-back:hover {
+      background: var(--terra-pale); color: var(--terra);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 80vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 120px 32px 80px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 20%, rgba(196,113,74,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(107,143,113,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-kicker {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terra);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadeUp .8s ease .2s forwards;
+    }
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700; line-height: 1.2; color: var(--ink);
+      margin-bottom: 20px; max-width: 820px;
+      opacity: 0; animation: fadeUp .9s ease .35s forwards;
+    }
+    .hero-title span.terra { color: var(--terra); }
+    .hero-title span.sage { color: var(--sage); }
+    .hero-sub {
+      font-size: clamp(14px, 2.2vw, 16px);
+      color: var(--ink-light); max-width: 580px; line-height: 1.85;
+      margin-bottom: 40px;
+      opacity: 0; animation: fadeUp .9s ease .5s forwards;
+    }
+    .hero-stats {
+      display: flex; gap: 36px; flex-wrap: wrap; justify-content: center;
+      margin-top: 12px;
+      opacity: 0; animation: fadeUp .9s ease .65s forwards;
+    }
+    .hs-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 28px; font-weight: 700; line-height: 1; color: var(--ink);
+    }
+    .hs-num.terra { color: var(--terra); }
+    .hs-num.sage { color: var(--sage); }
+    .hs-num.gold { color: var(--gold); }
+    .hs-num.plum { color: var(--plum); }
+    .hs-lab {
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink-faint); margin-top: 8px;
+    }
+
+    /* Section */
+    .section {
+      padding: 60px 32px; max-width: 760px; margin: 0 auto;
+    }
+    .section + .section { padding-top: 0; }
+
+    /* Card */
+    .card {
+      background: var(--paper);
+      border-radius: 16px;
+      padding: 44px 40px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 24px rgba(42,37,32,0.07);
+      border: 1px solid rgba(42,37,32,0.06);
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s, transform .7s;
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(160,100,60,0.04) 0.3px, transparent 0.6px);
+      background-size: 10px 10px; pointer-events: none;
+    }
+    .card-num {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 8px; color: var(--terra);
+    }
+    .card.is-mind .card-num { color: var(--terra); }
+    .card.is-med .card-num { color: var(--gold); }
+    .card.is-cbt .card-num { color: var(--slate); }
+    .card.is-mbct .card-num { color: var(--sage); }
+    .card.is-act .card-num { color: var(--plum); }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700; color: var(--ink);
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .card-tagline {
+      font-size: 14px; color: var(--ink-light);
+      margin-bottom: 20px; font-style: italic;
+    }
+    .card-divider {
+      width: 40px; height: 3px; border-radius: 2px;
+      margin-bottom: 28px; background: var(--terra);
+    }
+    .card.is-mind .card-divider { background: var(--terra); }
+    .card.is-med .card-divider { background: var(--gold); }
+    .card.is-cbt .card-divider { background: var(--slate); }
+    .card.is-mbct .card-divider { background: var(--sage); }
+    .card.is-act .card-divider { background: var(--plum); }
+
+    /* Bio strip */
+    .bio {
+      display: flex; flex-wrap: wrap; gap: 8px 20px;
+      font-size: 11.5px; color: var(--ink-faint);
+      letter-spacing: 0.04em; padding: 12px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .bio b { color: var(--ink); font-weight: 600; font-family: 'Noto Serif SC', serif; }
+
+    /* Body text */
+    .body p {
+      font-size: 14px; line-height: 1.85; color: var(--ink-light);
+      margin-bottom: 16px;
+    }
+    .body p strong { color: var(--ink); font-weight: 600; }
+    .body p em { font-style: normal; font-weight: 600; }
+    .card.is-mind .body p em { color: var(--terra); }
+    .card.is-med .body p em { color: var(--gold); }
+    .card.is-cbt .body p em { color: var(--slate); }
+    .card.is-mbct .body p em { color: var(--sage); }
+    .card.is-act .body p em { color: var(--plum); }
+
+    /* Thesis box */
+    .thesis {
+      margin: 28px 0; padding: 22px 26px;
+      border-radius: 12px; font-family: 'Noto Serif SC', serif;
+      font-size: 16px; line-height: 1.85;
+      background: var(--cream-dark); color: var(--ink);
+      border-left: 3px solid var(--ink);
+    }
+    .card.is-mind .thesis { background: var(--terra-pale); border-color: var(--terra); }
+    .card.is-med .thesis { background: var(--gold-pale); border-color: var(--gold); }
+    .card.is-cbt .thesis { background: var(--slate-pale); border-color: var(--slate); }
+    .card.is-mbct .thesis { background: var(--sage-pale); border-color: var(--sage); }
+    .card.is-act .thesis { background: var(--plum-pale); border-color: var(--plum); }
+    .thesis .t-label {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 10px;
+      color: var(--ink-light);
+    }
+    .thesis em { font-style: normal; font-weight: 700; color: var(--ink); }
+    .card.is-mind .thesis em { color: var(--terra); }
+    .card.is-med .thesis em { color: var(--gold); }
+    .card.is-cbt .thesis em { color: var(--slate); }
+    .card.is-mbct .thesis em { color: var(--sage); }
+    .card.is-act .thesis em { color: var(--plum); }
+
+    /* Tier cards (3 column) */
+    .tiers {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin: 28px 0;
+    }
+    @media (max-width: 600px) {
+      .tiers { grid-template-columns: 1fr; }
+    }
+    .tier {
+      padding: 18px 20px; border-radius: 10px;
+      background: var(--cream); border-top: 3px solid var(--ink-faint);
+    }
+    .card.is-mind .tier { border-color: var(--terra); }
+    .card.is-med .tier { border-color: var(--gold); }
+    .card.is-cbt .tier { border-color: var(--slate); }
+    .card.is-mbct .tier { border-color: var(--sage); }
+    .card.is-act .tier { border-color: var(--plum); }
+    .tier-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 8px;
+      color: var(--ink-faint);
+    }
+    .card.is-mind .tier-tag { color: var(--terra); }
+    .card.is-med .tier-tag { color: var(--gold); }
+    .card.is-cbt .tier-tag { color: var(--slate); }
+    .card.is-mbct .tier-tag { color: var(--sage); }
+    .card.is-act .tier-tag { color: var(--plum); }
+    .tier-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px; font-weight: 700; color: var(--ink);
+      margin-bottom: 8px; line-height: 1.4;
+    }
+    .tier-desc {
+      font-size: 12.5px; line-height: 1.7; color: var(--ink-light);
+    }
+
+    /* Pullquote */
+    .pq {
+      margin: 32px auto; padding: 28px 16px; max-width: 640px;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px; line-height: 1.6;
+      text-align: center; color: var(--ink); position: relative;
+    }
+    .pq::before {
+      content: '"'; position: absolute; top: -16px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 56px; line-height: 1; font-weight: 700; opacity: .15;
+    }
+    .card.is-mind .pq::before { color: var(--terra); }
+    .card.is-med .pq::before { color: var(--gold); }
+    .card.is-cbt .pq::before { color: var(--slate); }
+    .card.is-mbct .pq::before { color: var(--sage); }
+    .card.is-act .pq::before { color: var(--plum); }
+    .pq cite {
+      display: block; margin-top: 14px;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink-faint); font-style: normal;
+    }
+
+    /* Steps */
+    .steps { margin: 24px 0; }
+    .step {
+      display: grid; grid-template-columns: 36px 1fr; gap: 16px;
+      padding: 16px 18px; margin-bottom: 10px;
+      background: var(--cream); border-radius: 10px;
+    }
+    .step-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; font-weight: 700; line-height: 1;
+      color: var(--ink-faint);
+    }
+    .card.is-mbct .step-num { color: var(--sage); }
+    .step-content h4 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 12.5px; line-height: 1.7; color: var(--ink-light);
+    }
+
+    /* Insight box (note) */
+    .insight {
+      margin: 24px 0; padding: 16px 22px;
+      border-radius: 0 10px 10px 0;
+      background: var(--gold-pale); border-left: 3px solid var(--gold);
+      font-size: 13px; line-height: 1.8; color: var(--ink);
+    }
+    .insight b { font-weight: 600; }
+    .insight .i-tag {
+      display: block; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+
+    /* Map figure */
+    .map-fig {
+      margin: 32px 0; padding: 28px 20px;
+      background: var(--cream); border-radius: 14px;
+      overflow-x: auto;
+    }
+    .map-fig svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+    .map-legend {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      margin-top: 18px; font-size: 11px; color: var(--ink-light);
+      justify-content: center;
+    }
+    .map-legend span {
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .map-legend i {
+      width: 12px; height: 2px; display: inline-block;
+    }
+    .lg-mind { background: var(--terra); }
+    .lg-cbt { background: var(--slate); }
+    .lg-mbct { background: var(--sage); }
+    .lg-other { background: var(--ink-faint); }
+
+    /* Layers (5-level observer) */
+    .layers { margin: 28px 0; display: grid; gap: 10px; }
+    .layer {
+      display: grid; grid-template-columns: 110px 1fr; gap: 18px;
+      padding: 18px 22px; border-radius: 10px;
+      align-items: start; border: 1px solid rgba(42,37,32,0.06);
+    }
+    @media (max-width: 600px) {
+      .layer { grid-template-columns: 1fr; gap: 6px; }
+    }
+    .layer-tag {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 13px; font-weight: 700; line-height: 1.4;
+    }
+    .layer-body {
+      font-size: 13.5px; line-height: 1.8; color: var(--ink);
+    }
+    .layer-body b { font-weight: 600; }
+    .layer-l0 { background: var(--cream); }
+    .layer-l0 .layer-tag { color: var(--ink-faint); }
+    .layer-l1 { background: var(--slate-pale); }
+    .layer-l1 .layer-tag { color: var(--slate); }
+    .layer-l2 { background: var(--sage-pale); }
+    .layer-l2 .layer-tag { color: var(--sage); }
+    .layer-l3 { background: var(--plum-pale); }
+    .layer-l3 .layer-tag { color: var(--plum); }
+    .layer-l4 { background: var(--terra-pale); }
+    .layer-l4 .layer-tag { color: var(--terra); }
+
+    /* Compare table */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px; margin: 24px 0;
+    }
+    .compare-table th {
+      text-align: left; padding: 10px 14px;
+      background: rgba(42,37,32,0.04);
+      color: var(--ink-light);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td {
+      padding: 12px 14px; border-bottom: 1px solid var(--border);
+      color: var(--ink-light); vertical-align: top; line-height: 1.7;
+    }
+    .compare-table td:first-child {
+      color: var(--ink); font-weight: 600; white-space: nowrap;
+      font-family: 'Noto Serif SC', serif;
+    }
+    .compare-table td.c-cbt { color: var(--slate); }
+    .compare-table td.c-mbct { color: var(--sage); }
+    .compare-table td.c-act { color: var(--plum); }
+    .compare-table td.c-mind { color: var(--terra); }
+    .compare-table td.c-med { color: var(--gold); }
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    /* CTA back to inbox */
+    .cta-back {
+      margin: 60px auto 40px; max-width: 520px; padding: 28px 32px;
+      background: var(--paper); border-radius: 14px;
+      box-shadow: 0 2px 24px rgba(42,37,32,0.07);
+      border: 1px solid var(--border); text-align: center;
+    }
+    .cta-back h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px; font-weight: 700; color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .cta-back p {
+      font-size: 13px; color: var(--ink-light);
+      margin-bottom: 18px; line-height: 1.7;
+    }
+    .cta-back a {
+      display: inline-block; padding: 10px 22px;
+      background: var(--terra); color: var(--paper);
+      text-decoration: none; border-radius: 22px;
+      font-size: 13px; font-weight: 500;
+      transition: background .2s;
+    }
+    .cta-back a:hover { background: var(--ink); }
+
+    /* Footer */
+    footer {
+      padding: 50px 32px 60px; text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--ink-faint);
+    }
+    footer p { margin-bottom: 6px; }
+    footer a { color: var(--ink-light); text-decoration: none; }
+    footer a:hover { color: var(--terra); }
+
+    /* Animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/mindfulness.html" class="nav-brand">正念冥想 <small>谱系进阶</small></a>
+  <a href="/mindfulness.html" class="nav-back">← 返回入门</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-kicker">从佛家正念到现代心理治疗</p>
+  <h1 class="hero-title">
+    <span class="terra">正念</span>、<span class="sage">冥想</span>，<br>
+    与三代认知行为疗法的<span class="terra">谱系</span>
+  </h1>
+  <p class="hero-sub">
+    一段两千五百年的东方练习，怎样被翻译成一套西方临床心理学语言？
+    历经四十年，佛家正念逐层进入医学、精神病学、心理治疗——
+    催生了 MBSR、MBCT、ACT 三套被实证验证的疗法。
+    它们彼此呼应，又各有侧重。
+  </p>
+  <div class="hero-stats">
+    <div><div class="hs-num terra">2,500</div><div class="hs-lab">年正念传统</div></div>
+    <div><div class="hs-num">1960s</div><div class="hs-lab">CBT 诞生</div></div>
+    <div><div class="hs-num gold">1979</div><div class="hs-lab">MBSR 引入医学</div></div>
+    <div><div class="hs-num plum">1986</div><div class="hs-lab">ACT 提出</div></div>
+    <div><div class="hs-num sage">2002</div><div class="hs-lab">MBCT 临床化</div></div>
+  </div>
+</section>
+
+<!-- 卡片1：正念 Mindfulness -->
+<section class="section">
+  <div class="card is-mind" id="mindfulness">
+    <div class="card-num">PART 1 · 源头</div>
+    <h2 class="card-title">正念　Mindfulness</h2>
+    <p class="card-tagline">一种古老的注意力技术</p>
+    <div class="card-divider"></div>
+
+    <div class="bio">
+      <span><b>Mindfulness</b></span>
+      <span>Sati（巴利语）</span>
+      <span>佛教八正道之"正念"</span>
+      <span>一行禅师 1975 年《正念的奇迹》</span>
+      <span>卡巴金 1979 年 MBSR</span>
+    </div>
+
+    <div class="body">
+      <p>正念<strong>不是任何疗法</strong>，是一种心智状态——对当下经验保持<strong>不评判的觉知</strong>。它在佛教传统中已修习两千五百年，二十世纪由<strong>一行禅师</strong>等人带入西方主流，又被<strong>卡巴金（Jon Kabat-Zinn）</strong>剥离宗教外壳、改造为可临床推广的方法（MBSR）。所有后续的"正念心理疗法"，都从这里分叉。</p>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">CORE THESIS</div>
+      正念不是<em>让心安静</em>，而是<em>看见心的所有动静</em>。看见念头来——但不被它带走；看见情绪来——但不与它合一。<em>觉知本身</em>就是出路。
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">三要素 · 1</div>
+        <div class="tier-name">在当下</div>
+        <div class="tier-desc">注意力定位在此刻，不被过去回忆或未来计划拉走。这是正念区别于"思考""规划""回忆"的最根本特征。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">三要素 · 2</div>
+        <div class="tier-name">不评判</div>
+        <div class="tier-desc">看见就是看见，不立刻贴"好/坏""应该/不应该"的标签。这是正念与"反思""自省"的关键差别。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">三要素 · 3</div>
+        <div class="tier-name">观察者位置</div>
+        <div class="tier-desc">"我"既是经验者也是观察者。一行禅师："我们既是守卫，也是访客；既是自己的心，也是心的观察者。"</div>
+      </div>
+    </div>
+
+    <div class="pq">
+      呼吸是连接生命与意识的桥梁，让你的身心合一。
+      <cite>—— 一行禅师 · 《正念的奇迹》</cite>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">关键澄清</span>
+      <b>正念 ≠ 冥想。</b>正念是一种<b>状态</b>（在当下、不评判地觉知），冥想是<b>训练这种状态的方法</b>之一。你可以坐着冥想以培养正念，但走路、洗碗、吃饭时也都可以保持正念——只要那一刻你的心确实在你正在做的事上。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片2：冥想 Meditation -->
+<section class="section">
+  <div class="card is-med" id="meditation">
+    <div class="card-num">PART 2 · 工具箱</div>
+    <h2 class="card-title">冥想　Meditation</h2>
+    <p class="card-tagline">训练心智的方法总称</p>
+    <div class="card-divider"></div>
+
+    <div class="body">
+      <p>"冥想"是<strong>一切系统化的心智训练方法的统称</strong>，比正念的范围更宽。它包含<strong>专注式</strong>（Focused Attention）、<strong>开放觉知式</strong>（Open Monitoring）、<strong>慈悲冥想</strong>（Loving-kindness）、<strong>超越冥想</strong>（TM）等多种类型。正念冥想（Mindfulness Meditation）只是其中一种——但因被临床心理学吸纳，成为了西方主流最熟悉的那一种。</p>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">DEFINITION</div>
+      冥想是<em>有意为之的心智训练</em>。它不是<em>放空</em>，不是<em>不想事情</em>，而是<em>用某种方法，让心从自动驾驶切换到觉知模式</em>。不同流派只是用了不同的"切换钥匙"。
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">类型 · 专注</div>
+        <div class="tier-name">Focused Attention</div>
+        <div class="tier-desc">把注意力放在一个对象上——呼吸、咒语、烛火、声音。心一散就温柔地拉回来。一行禅师讲的"数息法"就是这一类。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">类型 · 开放</div>
+        <div class="tier-name">Open Monitoring</div>
+        <div class="tier-desc">不固定对象，对一切经过的念头、情绪、感受保持平等的觉知，不评判、不抓取。"观心法"属于这一类。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">类型 · 慈悲</div>
+        <div class="tier-name">Loving-kindness</div>
+        <div class="tier-desc">主动培养慈悲心、愿一切众生离苦。从自己开始扩展到亲近者、陌生人、敌人。佛家"慈心观"的现代化形式。</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">常见混淆</span>
+      <b>"冥想 = 把脑子放空"</b>是最大的误解。冥想的目标不是"没有念头"——那既不可能也不必要。目标是<b>对正在发生的念头保持觉知</b>，然后选择是跟着它走，还是让它过去。这跟"空无"是两件事。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片3：CBT -->
+<section class="section">
+  <div class="card is-cbt" id="cbt">
+    <div class="card-num">PART 3 · 第一代</div>
+    <h2 class="card-title">CBT　认知行为疗法</h2>
+    <p class="card-tagline">识别、挑战、替换</p>
+    <div class="card-divider"></div>
+
+    <div class="bio">
+      <span><b>Aaron T. Beck</b>（1921–2021）</span>
+      <span>1960s 提出认知三角</span>
+      <span><b>Albert Ellis</b>（1913–2007）</span>
+      <span>RET / REBT</span>
+      <span>第一代行为疗法</span>
+    </div>
+
+    <div class="body">
+      <p>二十世纪 60 年代，<strong>Aaron Beck</strong>（精神科医生）和 <strong>Albert Ellis</strong>（心理学家）几乎同时发现：抑郁症患者并非天生悲观，而是被一组<strong>自动负面思维</strong>（automatic negative thoughts）持续喂养。CBT 的方法是教来访者<strong>识别这些思维、用证据挑战它们、用更平衡的认知替换它们</strong>。这是西方心理学第一次系统性地介入"念头"层面——但还停留在"念头是要被改造的对象"的位置上。</p>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">CORE THESIS</div>
+      不是事件让你痛苦，是你<em>对事件的解释</em>让你痛苦。改变不合理的解释——<em>挑战自动负面思维</em>，用更合理的认知替换它——情绪和行为就会跟着改变。
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">三角模型</div>
+        <div class="tier-name">认知 → 情绪 → 行为</div>
+        <div class="tier-desc">三者互为因果。改变任何一环，另外两环都会跟着变。CBT 的杠杆点选在认知，因为它最容易被语言化、可挑战。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">核心技术</div>
+        <div class="tier-name">思维记录</div>
+        <div class="tier-desc">识别具体场景下的自动思维，列出支持/反对它的证据，得出更平衡的替代思维。是 CBT 最经典的家庭作业。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">实证</div>
+        <div class="tier-name">循证医学黄金标准</div>
+        <div class="tier-desc">CBT 是迄今为止被随机对照试验验证最充分的心理疗法之一，对抑郁、焦虑、PTSD、强迫等有明确疗效。</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">与正念的关系</span>
+      CBT 已经使用了"<b>观察者</b>"的初级形态——它教人退一步看自己的思维（"我此刻在想 X"）。但 CBT 把<b>念头当作对象</b>来处理：识别它、挑战它、替换它。这跟一行禅师"<b>认知到它就足够了，不要执著其中或试图消除它</b>"的态度有本质不同——CBT 还在分别心里（这是好念头，那是坏念头），而正念是无分别地觉知。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片4：MBCT -->
+<section class="section">
+  <div class="card is-mbct" id="mbct">
+    <div class="card-num">PART 4 · 第二代</div>
+    <h2 class="card-title">MBCT　正念认知疗法</h2>
+    <p class="card-tagline">观察念头，但不替换</p>
+    <div class="card-divider"></div>
+
+    <div class="bio">
+      <span><b>Zindel Segal</b></span>
+      <span><b>Mark Williams</b></span>
+      <span><b>John Teasdale</b></span>
+      <span>2002 年首版 MBCT 手册</span>
+      <span>受 Kabat-Zinn / 一行禅师启发</span>
+    </div>
+
+    <div class="body">
+      <p>2002 年，三位认知治疗师——<strong>Zindel Segal、Mark Williams、John Teasdale</strong>——把卡巴金的 MBSR 与传统 CBT 结合，针对<strong>抑郁症复发</strong>设计了 MBCT（Mindfulness-Based Cognitive Therapy）。临床上发现：对反复抑郁发作的患者，MBCT 比单纯 CBT 更能<strong>预防复发</strong>——因为它教的不是"如何挑战抑郁思维"，而是<strong>如何不被抑郁思维抓住</strong>。</p>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">PIVOTAL SHIFT</div>
+      MBCT 跟 CBT 最大的差别：不再<em>挑战和替换</em>念头，而是教患者<em>看见念头但不与之合一</em>——让念头像云一样飘过，不抓取也不抗拒。<em>"念头不是事实"</em>是 MBCT 最浓缩的口号。
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>八周课程结构</h4>
+          <p>标准化的 8 周团体课程，每周一次、每次 2 小时，加每天 45 分钟家庭练习。结构高度规范化，可被临床心理师培训和复制。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>身体扫描 + 坐禅 + 行禅</h4>
+          <p>课程内容直接借自佛家：身体扫描训练觉知身体感受、坐禅训练观呼吸和观心、行禅训练把正念带入日常活动。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>三分钟呼吸空间</h4>
+          <p>MBCT 的招牌技术——任何时刻可做的迷你正念：第一分钟觉察当下、第二分钟聚焦呼吸、第三分钟扩展到全身。是把正念落地到日常的桥梁。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>"去中心化"（Decentering）</h4>
+          <p>MBCT 最重要的心理机制——把"我是抑郁的"改写为"我注意到一个抑郁念头出现了"。这跟一行禅师"善念恶念都只是认知"几乎同源。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pq">
+      念头不是事实——即便它们坚称自己是。
+      <cite>—— Segal, Williams &amp; Teasdale · MBCT 手册</cite>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">与正念的关系</span>
+      <b>MBCT 是西方临床心理学最忠实地翻译佛家正念的一支。</b>核心机制——观察念头但不评价、不替换——基本就是一行禅师所讲的方法的世俗化版本。差别在于：MBCT 是为<b>临床治疗</b>设计的，所以保留了治疗师角色、八周课程、循证评估等结构；而原始的正念修行是为<b>全人发展</b>设计的，没有时间表，是一辈子的事。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片5：ACT -->
+<section class="section">
+  <div class="card is-act" id="act">
+    <div class="card-num">PART 5 · 第三代</div>
+    <h2 class="card-title">ACT　接纳承诺疗法</h2>
+    <p class="card-tagline">去融合，朝向价值</p>
+    <div class="card-divider"></div>
+
+    <div class="bio">
+      <span><b>Steven C. Hayes</b></span>
+      <span>1986 年首次发表</span>
+      <span>关系框架理论（RFT）为基础</span>
+      <span>第三代行为疗法代表</span>
+    </div>
+
+    <div class="body">
+      <p>1986 年，<strong>Steven C. Hayes</strong> 提出 ACT（Acceptance and Commitment Therapy）。它跟 MBCT 同样根植于正念，但强调两个独特概念：<strong>认知去融合</strong>（Cognitive Defusion）——把"我"和"念头"分开；以及<strong>价值观引领的行动</strong>——不再追求"消除痛苦"，而是<strong>带着痛苦去做你真正在乎的事</strong>。ACT 不否认痛苦的存在，但拒绝让痛苦决定行动方向。</p>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">CORE THESIS</div>
+      不是<em>感觉好</em>了才去过想要的生活，而是<em>带着此刻的所有感觉</em>，去做你真正在乎的事。<em>痛苦不是要被消灭的敌人</em>——它是人类心智的天然产物，与意义同根。
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">六过程 · 1</div>
+        <div class="tier-name">认知去融合</div>
+        <div class="tier-desc">把"我是失败者"改成"我有一个'我是失败者'的念头"。这个语言上的小改变，在心理上把人从念头里抽离出来。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">六过程 · 2</div>
+        <div class="tier-name">接纳</div>
+        <div class="tier-desc">不再花力气控制无法控制的内在经验（情绪、想法、记忆）。打开空间让它们存在，把节省下来的能量投入可控制的行动。</div>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">六过程 · 3</div>
+        <div class="tier-name">价值与承诺</div>
+        <div class="tier-desc">明确"什么对你最重要"，然后承诺去做能体现这些价值的行动——即使带着焦虑、即使没有把握。是 ACT 的关键。</div>
+      </div>
+    </div>
+
+    <div class="pq">
+      你不是你的念头，你是<em>体验</em>那些念头的<em>那个人</em>。
+      <cite>—— Steven C. Hayes</cite>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">与正念的关系</span>
+      ACT 比 MBCT 更哲学化——它直接挑战"应该消除痛苦"这个西方心理学的隐含前提。它的"去融合"技术跟禅宗"我是我的观察者"几乎是同一个机制；它的"价值导向"则更像佛家"菩萨道"的世俗化——<b>不为自己解脱而修，是为更大的事而活。</b>
+    </div>
+  </div>
+</section>
+
+<!-- 卡片6：谱系图 -->
+<section class="section">
+  <div class="card" id="map">
+    <div class="card-num">PART 6 · 谱系</div>
+    <h2 class="card-title">一张地图：从佛家到现代心理治疗</h2>
+    <p class="card-tagline">两千多年东方传统 × 六十年西方临床演化</p>
+    <div class="card-divider" style="background:var(--ink)"></div>
+
+    <div class="body">
+      <p>左侧是<strong>东方正念传统</strong>，右侧是<strong>西方临床心理学</strong>的演化。二者之间的桥梁——是 1979 年卡巴金把佛家正念<strong>剥离宗教外壳</strong>、改造为可被医院、学校、企业接受的 MBSR 课程；之后的二十年，西方心理学逐层把正念吸收进自己的疗法体系。</p>
+    </div>
+
+    <div class="map-fig">
+      <svg viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a099"/>
+          </marker>
+          <marker id="arr-mind" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#c4714a"/>
+          </marker>
+          <marker id="arr-cbt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f7080"/>
+          </marker>
+          <marker id="arr-mbct" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b8f71"/>
+          </marker>
+        </defs>
+
+        <!-- 时间轴 -->
+        <line x1="40" y1="490" x2="960" y2="490" stroke="#a8a099" stroke-width="1"/>
+        <text x="40" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">公元前5世纪</text>
+        <text x="290" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">1960s</text>
+        <text x="460" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">1979</text>
+        <text x="600" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">1986</text>
+        <text x="750" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">2002</text>
+        <text x="900" y="515" font-family="Noto Sans SC" font-size="11" fill="#a8a099">至今</text>
+
+        <!-- 佛家正念 -->
+        <g>
+          <rect x="20" y="40" width="220" height="120" rx="14" fill="#f5e6de" stroke="#c4714a" stroke-width="1.5"/>
+          <text x="130" y="68" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#c4714a">佛家正念传统</text>
+          <text x="130" y="92" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">Sati · 觉知 · 八正道</text>
+          <text x="130" y="112" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">观呼吸 · 观心 · 观法</text>
+          <text x="130" y="138" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">2,500 年传承</text>
+        </g>
+
+        <!-- 一行禅师 -->
+        <g>
+          <rect x="20" y="200" width="220" height="100" rx="14" fill="#faf7f2" stroke="#c4714a" stroke-width="1.2"/>
+          <text x="130" y="228" text-anchor="middle" font-family="Noto Serif SC" font-size="13" font-weight="700" fill="#2a2520">一行禅师</text>
+          <text x="130" y="250" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">《正念的奇迹》1975</text>
+          <text x="130" y="270" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">把正念带入西方主流</text>
+        </g>
+
+        <!-- 卡巴金 / MBSR -->
+        <g>
+          <rect x="400" y="200" width="180" height="100" rx="14" fill="#f5f0d0" stroke="#b8960c" stroke-width="1.5"/>
+          <text x="490" y="228" text-anchor="middle" font-family="Noto Serif SC" font-size="13" font-weight="700" fill="#b8960c">Jon Kabat-Zinn</text>
+          <text x="490" y="250" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">MBSR 1979</text>
+          <text x="490" y="270" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">医学化 · 去宗教化</text>
+        </g>
+
+        <!-- CBT -->
+        <g>
+          <rect x="260" y="40" width="180" height="100" rx="14" fill="#e6e6ea" stroke="#6f7080" stroke-width="1.5"/>
+          <text x="350" y="68" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#6f7080">CBT</text>
+          <text x="350" y="90" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">Beck · Ellis · 1960s</text>
+          <text x="350" y="110" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">挑战 · 替换 · 思维记录</text>
+        </g>
+
+        <!-- ACT -->
+        <g>
+          <rect x="580" y="40" width="180" height="100" rx="14" fill="#ece5ef" stroke="#8a7494" stroke-width="1.5"/>
+          <text x="670" y="68" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#8a7494">ACT</text>
+          <text x="670" y="90" text-anchor="middle" font-family="Noto Sans SC" font-size="11" fill="#6b6560">Hayes · 1986</text>
+          <text x="670" y="110" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">去融合 · 接纳 · 价值</text>
+        </g>
+
+        <!-- MBCT -->
+        <g>
+          <rect x="730" y="200" width="180" height="100" rx="14" fill="#e3ede4" stroke="#6b8f71" stroke-width="1.5"/>
+          <text x="820" y="228" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#6b8f71">MBCT</text>
+          <text x="820" y="250" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#6b6560">Segal·Williams·Teasdale 2002</text>
+          <text x="820" y="270" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">观察念头 · 不替换</text>
+        </g>
+
+        <!-- 第三代综合 -->
+        <g>
+          <rect x="730" y="370" width="180" height="80" rx="14" fill="#faf7f2" stroke="#a8a099" stroke-width="1" stroke-dasharray="4,4"/>
+          <text x="820" y="398" text-anchor="middle" font-family="Noto Serif SC" font-size="13" font-weight="700" fill="#2a2520">第三代行为疗法</text>
+          <text x="820" y="418" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#6b6560">DBT · CFT · MSC</text>
+          <text x="820" y="436" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099">正念 + 慈悲 + 价值</text>
+        </g>
+
+        <!-- 箭头 -->
+        <line x1="130" y1="160" x2="130" y2="200" stroke="#c4714a" stroke-width="2" marker-end="url(#arr-mind)"/>
+        <line x1="240" y1="250" x2="400" y2="250" stroke="#c4714a" stroke-width="2" marker-end="url(#arr-mind)"/>
+        <text x="320" y="240" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#c4714a" font-style="italic">影响</text>
+        <line x1="580" y1="260" x2="730" y2="250" stroke="#6b8f71" stroke-width="2" marker-end="url(#arr-mbct)"/>
+        <text x="655" y="245" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#6b8f71" font-style="italic">医学化基础</text>
+        <line x1="350" y1="140" x2="730" y2="220" stroke="#6f7080" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-cbt)" opacity="0.7"/>
+        <text x="540" y="180" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#6f7080" font-style="italic">认知框架</text>
+        <line x1="440" y1="90" x2="580" y2="90" stroke="#a8a099" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+        <text x="510" y="80" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#a8a099" font-style="italic">下一代</text>
+        <line x1="240" y1="270" x2="580" y2="130" stroke="#c4714a" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-mind)" opacity="0.6"/>
+        <text x="380" y="195" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="#c4714a" font-style="italic">观察者技术</text>
+        <line x1="670" y1="140" x2="780" y2="370" stroke="#a8a099" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+        <line x1="820" y1="300" x2="820" y2="370" stroke="#a8a099" stroke-width="1.5" marker-end="url(#arr)"/>
+      </svg>
+
+      <div class="map-legend">
+        <span><i class="lg-mind"></i> 东方思想西渐</span>
+        <span><i class="lg-cbt"></i> 西方认知行为演化</span>
+        <span><i class="lg-mbct"></i> 两线融合</span>
+        <span><i class="lg-other"></i> 派生 / 综合</span>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="i-tag">阅读这张图</span>
+      <b>主线一</b>（橙）：佛家 → 一行禅师 → 卡巴金 / 西方心理学。这是<b>东方思想西渐</b>的路径。<br>
+      <b>主线二</b>（灰）：CBT → MBCT / ACT。这是<b>西方认知行为疗法的内部演化</b>——从"挑战和替换念头"逐步走向"观察和接纳念头"。<br>
+      <b>关键交点</b>：MBCT 是两条线的真正融合——既保留 CBT 的临床框架，又彻底吸收佛家正念的核心机制。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片7：5 层观察者 -->
+<section class="section">
+  <div class="card" id="layers">
+    <div class="card-num">PART 7 · 层级</div>
+    <h2 class="card-title">从 CBT 到佛家正念的<br>五层观察者</h2>
+    <p class="card-tagline">同一座山的不同里程</p>
+    <div class="card-divider" style="background:var(--ink)"></div>
+
+    <div class="body">
+      <p>所有这些疗法都在使用同一个机制——<strong>观察者</strong>，区别在于它们抵达的<strong>深度</strong>不同。这是一个由浅至深的层级，每一层都比上一层更接近一行禅师所讲的"<strong>我们既是守卫，也是访客</strong>"。</p>
+    </div>
+
+    <div class="layers">
+      <div class="layer layer-l0">
+        <div class="layer-tag">第 0 层<br>未察觉</div>
+        <div class="layer-body">
+          <b>大多数人的默认状态。</b>被念头和情绪牵着走，没有"观察者"，没有缝隙。念头说"你不行"你就觉得自己不行；情绪说"发火"你就发火。这是自动驾驶模式——也是所有疗法要打破的起点。
+        </div>
+      </div>
+      <div class="layer layer-l1">
+        <div class="layer-tag">第 1 层<br>识别</div>
+        <div class="layer-body">
+          <b>CBT 的层级。</b>"我注意到我在想'我不行'。"——念头被语言化、被识别。这是观察者技术的入门。但 CBT 接下来会让你<b>挑战</b>这个念头（"有证据吗？"），所以观察者只是工具，最终还是要回到"念头是要被改造的"。
+        </div>
+      </div>
+      <div class="layer layer-l2">
+        <div class="layer-tag">第 2 层<br>不评判</div>
+        <div class="layer-body">
+          <b>MBCT 的层级。</b>"我注意到一个'我不行'的念头出现了。"——看见就够了，不挑战、不替换。念头像云一样飘过，你不抓也不推。这接近一行禅师"<b>认知到它就足够了</b>"的态度。
+        </div>
+      </div>
+      <div class="layer layer-l3">
+        <div class="layer-tag">第 3 层<br>去融合</div>
+        <div class="layer-body">
+          <b>ACT 的层级。</b>"我有一个'我不行'的念头，但我此刻可以去做对我重要的事。"——不仅看见念头，而且不让念头决定行动。带着念头朝向价值前进。这一层引入<b>价值导向</b>——观察不是终点，行动才是。
+        </div>
+      </div>
+      <div class="layer layer-l4">
+        <div class="layer-tag">第 4 层<br>无分别</div>
+        <div class="layer-body">
+          <b>佛家 / 一行禅师的层级。</b>连"我是观察者"的执着也放下。"<b>我们既是守卫，也是访客；既是自己的心，也是心的观察者。</b>"没有念头之外的"我"在看着念头——觉知就是念头本身的清明面。这一层是西方心理学很少完全抵达的——它需要长期修行，不是几周课程能达到的。
+        </div>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <div class="t-label">SUMMARY</div>
+      <em>层级越深，干预越轻，自由越大。</em>第 1 层教你<em>识别</em>，第 2 层教你<em>放下评判</em>，第 3 层教你<em>不被念头束缚</em>，第 4 层让你<em>看见念头本无主</em>。四层不是替代关系——是<em>同一道路上的不同里程</em>。
+    </div>
+  </div>
+</section>
+
+<!-- 卡片8：选哪个 -->
+<section class="section">
+  <div class="card" id="choose">
+    <div class="card-num">PART 8 · 实践</div>
+    <h2 class="card-title">你应该学哪一种？</h2>
+    <p class="card-tagline">不是竞争关系——是同一座山的不同登山路径</p>
+    <div class="card-divider" style="background:var(--ink)"></div>
+
+    <div class="body">
+      <p>没有一个唯一答案。下表是一个粗略的对应：根据你当下的需要，从最合适的入口进入。</p>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>需求 / 处境</th><th>建议入口</th><th>理由</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c-cbt">具体问题</td>
+          <td><b>CBT</b></td>
+          <td>有明确想解决的问题（焦虑、抑郁、强迫、社恐）——CBT 有最成熟的临床路径，最容易被医保覆盖。短期、目标导向、成本低。</td>
+        </tr>
+        <tr>
+          <td class="c-mbct">反复抑郁</td>
+          <td><b>MBCT</b></td>
+          <td>抑郁症有过两次以上发作——MBCT 是预防复发的循证黄金标准，比 CBT 单独使用更有效。8 周课程可在医院或正念中心找到。</td>
+        </tr>
+        <tr>
+          <td class="c-act">慢性痛苦</td>
+          <td><b>ACT</b></td>
+          <td>有些痛苦无法消除（慢性病、丧失、生活困境）——ACT 教你不再花力气消灭它，而是带着它去过有意义的生活。强调"此刻就是入口"。</td>
+        </tr>
+        <tr>
+          <td class="c-med">高压生活</td>
+          <td><b>MBSR</b></td>
+          <td>没有具体精神病学问题，但常感焦虑/失眠/情绪起伏——MBSR 是最经典的 8 周正念减压课程，覆盖最广，门槛最低。</td>
+        </tr>
+        <tr>
+          <td class="c-mind">长期成长</td>
+          <td><b>正念 / 冥想</b></td>
+          <td>不是要解决某个症状，而是想长期培养觉知能力、内在自由——找一个修行传统（佛家、世俗正念、瑜伽），坚持每天练习。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <span class="i-tag">关键提示</span>
+      这些路径<b>可以叠加</b>。临床上，很多人是先用 CBT 解决具体症状，再用 MBCT/ACT 做长期维护，最后慢慢进入更纯粹的正念修行。<b>选择不必终生——它们是工具，不是身份</b>。一行禅师在书里反复说的：<b>"用过的工具，要放下。"</b>
+    </div>
+  </div>
+</section>
+
+<!-- 回到入门 CTA -->
+<div class="section">
+  <div class="cta-back">
+    <h3>还没读过入门指南？</h3>
+    <p>七张卡片带你从零开始：什么是冥想、什么是正念、怎么做、怎么坚持。每天 5 分钟，从今天开始。</p>
+    <a href="/mindfulness.html">→ 阅读入门指南</a>
+  </div>
+</div>
+
+<footer>
+  <p>从 Sati 到 MBCT — 一条 2,500 年的觉知之路</p>
+  <p>mindfulness.ainside.cn / lineage &nbsp;·&nbsp; <a href="/mindfulness.html">入门指南</a> &nbsp;·&nbsp; <a href="https://ainside.cn">回到主页</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+</script>
+</body>
+</html>
